@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <title>DLSAUTOSERVICE — складний ремонт пікапів, позашляховиків та бусів · Запоріжжя</title>
-<script>try{var t=new URLSearchParams(location.search).get('theme')||localStorage.getItem('dls-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>try{var t=new URLSearchParams(location.search).get('theme')||localStorage.getItem('dls-theme')||'dark';document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Fira+Sans+Condensed:wght@600&display=swap&subset=cyrillic" rel="stylesheet">
 <style>:root,[data-theme="dark"]{color-scheme:dark;--l-bg:#181B1F;--l-border:#262B31;--l-text:#F4F5F6;--l-text-2:#A9AFB6;--l-mute:#8F8F92;--l-line:#3B4148;--c-bg:#262B31;--c-field:#181B1F;--c-field-h:#1D2025;--c-field-f:#0F1114;--c-ring:#7D848D;--c-text:#F4F5F6;--c-text-2:#A9AFB6;--c-text-3:#7D848D;--c-line:#3B4148;--c-err:#F2707A;--why-card:#181B1F;--bg:#0F1114;--surface:#181B1F;--surface-2:#262B31;--surface-3:#3B4148;--btn:#262B31;--btn-hover:#3B4148;--btn-text:#F4F5F6;--btn-text-2:#A9AFB6;--border:#262B31;--text:#F4F5F6;--text-2:#A9AFB6;--text-3:#7D848D;--primary:#E0001B;--primary-hover:#C40018;--on-primary:#F4F5F6;--primary-text:#FF3B4A;--cta-sq:#F4F5F6;--cta-arrow:#E0001B;--footer-bg:#0F1114;--scrim:#0F1114;--scrim-88:rgba(15,17,20,.88);--scrim-0:rgba(15,17,20,0);--glow:1;--t1:118,54,34;--card-bg:#181B1F;--text-mute:#8F8F92;--tint-size:115% 80%;--tint-mid-a:.55;--tint-mid:38%;--tint-end:72%;--tint-a:.85;--tint-a-h:1;--tint-sat-h:1;--t2:42,72,104;--t3:84,84,40;--noise-a:.08;--shadow-1:0 2px 8px rgba(15,17,20,.32);--shadow-2:0 12px 32px rgba(15,17,20,.48);--cat-1:94,49,46;--cat-2:0,73,80;--cat-3:63,68,24;--cat-4:66,56,94;--cat-5:85,57,20;--cat-6:35,66,97;--cat-7:27,74,52;--cat-8:86,49,74;--ct-w:115%;--ct-ry:192px;--ct-ry-m:144px;--ct-mid:38%;--ct-end:78%;--row-hover:#262B31}
@@ -398,7 +398,7 @@ class Component extends DCLogic {
   brandRef = React.createRef();
   componentDidMount() {
     this.mq = window.matchMedia('(prefers-color-scheme: light)');
-    this.onSys = (e) => { let saved = null; try { saved = localStorage.getItem('dls-theme'); } catch (_) {} if (!saved && !new URLSearchParams(location.search).get('theme')) this.applyTheme(e.matches ? 'light' : 'dark', false); };
+    this.onSys = (e) => { let saved = null; try { saved = localStorage.getItem('dls-theme'); } catch (_) {} if (false) this.applyTheme(e.matches ? 'light' : 'dark', false); };
     this.mq.addEventListener && this.mq.addEventListener('change', this.onSys);
     this.onR = () => this.setState({ w: window.innerWidth, h: window.innerHeight });
     window.addEventListener('resize', this.onR);
@@ -409,7 +409,7 @@ class Component extends DCLogic {
     this.onScroll = () => { const hs = window.scrollY > (this.hdrTh || 0); if (hs !== this.state.hdr) this.setState({ hdr: hs }); if (this.brRaf) return; this.brRaf = requestAnimationFrame(() => { this.brRaf = 0; this.brandUpdate(); }); };
     window.addEventListener('scroll', this.onScroll, { passive: true }); this.brandUpdate();
   }
-  watchStats() { if (!this.sio) this.sio = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.dataset.in = '1'; this.sio.unobserve(e.target); } }), { threshold: 0.25, rootMargin: '0px 0px -8% 0px' }); document.querySelectorAll('[data-stats]:not([data-w]),[data-svc]:not([data-w]),[data-gauge]:not([data-w]),[data-sl]:not([data-w]),[data-wq]:not([data-w]),[data-wf]:not([data-w])').forEach(el => { el.dataset.w = '1'; this.sio.observe(el); }); }
+  watchStats() { if (!this.sio) this.sio = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.dataset.in = '1'; this.sio.unobserve(e.target); if (e.target.matches('[data-stats][data-svc]')) { const sec = e.target.closest('section'); sec && sec.querySelectorAll('[data-cat][data-svc]').forEach(c => { c.dataset.in = '1'; this.sio.unobserve(c); }); } } }), { threshold: 0.25, rootMargin: '0px 0px -8% 0px' }); document.querySelectorAll('[data-stats]:not([data-w]),[data-svc]:not([data-w]),[data-gauge]:not([data-w]),[data-sl]:not([data-w]),[data-wq]:not([data-w]),[data-wf]:not([data-w])').forEach(el => { el.dataset.w = '1'; this.sio.observe(el); }); }
   componentDidUpdate() { this.watchStats(); this.observe(); this.brandUpdate(); }
   componentWillUnmount() {
     clearTimeout(this.preT); clearTimeout(this.preSafe);
