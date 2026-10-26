@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>[data-lf]::placeholder{color:var(--c-text-3);opacity:1}[data-lf]{outline:none}
+[data-lf-sel]{appearance:none;-webkit-appearance:none}[data-lf-sel] option{background:var(--c-bg);color:var(--c-text)}
+[data-cb]:focus-visible + span{outline:2px solid #E0001B;outline-offset:2px}
+[data-fw] [data-base]{transition:background-color .4s cubic-bezier(.65,0,.35,1)}[data-fw]:hover [data-base]{background:var(--c-text-3)!important}
+[data-fw] [data-bar]{transform:scaleX(0);transform-origin:0 50%;transition:transform .6s cubic-bezier(.65,0,.35,1),background-color .3s ease}
+[data-fw][data-on] [data-bar]{transform:scaleX(1)}[data-fw][data-err] [data-bar]{background:var(--c-err)!important}
+[data-fw] [data-lf]{transition:color .3s ease}
+[data-tile] [data-base],[data-tile] [data-bar]{display:none}
+[data-tile]{box-shadow:inset 0 0 0 1px transparent;transition:background-color .5s cubic-bezier(.65,0,.35,1),box-shadow .5s cubic-bezier(.65,0,.35,1)}
+[data-tile]:hover{background:var(--c-field-h)!important}
+[data-tile][data-on]{background:var(--c-field-f)!important;box-shadow:inset 0 0 0 1px var(--c-ring)}
+[data-tile][data-err]{box-shadow:inset 0 0 0 1px var(--c-err)}
+[data-tile] label{transition:color .4s ease}[data-tile][data-on] label{color:var(--c-text)!important}
+[data-spin]{animation:dlsSpin .8s linear infinite}@keyframes dlsSpin{to{transform:rotate(360deg)}}
+[data-tl]{text-decoration:underline 1px;text-decoration-color:var(--c-line);text-underline-offset:6px;transition:text-decoration-color .2s ease}[data-tl]:hover{text-decoration-color:currentColor}
+[data-cta]{transition:background-color .35s cubic-bezier(.65,0,.35,1),color .35s cubic-bezier(.65,0,.35,1),padding .45s cubic-bezier(.65,0,.35,1)}[data-cta] [data-sq]{transition:left .45s cubic-bezier(.65,0,.35,1),background-color .35s,color .35s}
+[data-cta]:not([disabled]):hover{background:var(--text)!important;color:var(--bg)!important;padding-left:var(--pr)!important;padding-right:var(--pl)!important}[data-cta]:not([disabled]):hover [data-sq]{left:4px!important;background:var(--sq-h-bg,#0F1114)!important;color:var(--sq-h-fg,#FF3B4A)!important}
+@media (prefers-reduced-motion:reduce){[data-fw] [data-base]{transition:background-color .4s cubic-bezier(.65,0,.35,1)}[data-fw]:hover [data-base]{background:var(--c-text-3)!important}
+[data-fw] [data-bar]{transform:scaleX(0);transform-origin:0 50%;transition:transform .6s cubic-bezier(.65,0,.35,1),background-color .3s ease}
+[data-fw][data-on] [data-bar]{transform:scaleX(1)}[data-fw][data-err] [data-bar]{background:var(--c-err)!important}
+[data-fw] [data-lf]{transition:color .3s ease}
+[data-tile] [data-base],[data-tile] [data-bar]{display:none}
+[data-tile]{box-shadow:inset 0 0 0 1px transparent;transition:background-color .5s cubic-bezier(.65,0,.35,1),box-shadow .5s cubic-bezier(.65,0,.35,1)}
+[data-tile]:hover{background:var(--c-field-h)!important}
+[data-tile][data-on]{background:var(--c-field-f)!important;box-shadow:inset 0 0 0 1px var(--c-ring)}
+[data-tile][data-err]{box-shadow:inset 0 0 0 1px var(--c-err)}
+[data-tile] label{transition:color .4s ease}[data-tile][data-on] label{color:var(--c-text)!important}
+[data-spin]{animation-duration:2.4s}}</style>
+</helmet>
+<div ref="{{ cardRef }}" style="box-sizing:border-box;width:100%;min-height:{{ minH }};padding:{{ pad }};border-radius:4px;background:var(--c-bg);color:var(--c-text);display:flex;flex-direction:column;">
+<sc-if value="{{ isForm }}" hint-placeholder-val="{{ true }}">
+<div style="display:grid;grid-template-columns:{{ cols }};gap:8px;">
+<sc-for list="{{ fields }}" as="f" hint-placeholder-count="5">
+<div data-tile="" data-on="{{ f.onA }}" data-err="{{ f.errA }}" style="grid-column:{{ f.col }};position:relative;box-sizing:border-box;padding:12px 16px 4px;border-radius:4px;background:var(--c-field);display:flex;flex-direction:column;min-width:0;cursor:text;">
+<label for="{{ f.domId }}" style="display:flex;align-items:baseline;gap:8px;font:500 14px/1.45 'IBM Plex Sans',sans-serif;color:var(--c-text-2);">{{ f.label }}<sc-if value="{{ f.opt }}" hint-placeholder-val="{{ false }}"><span style="font-weight:400;color:var(--c-text-3);">необов'язково</span></sc-if></label>
+<div data-fw="" data-on="{{ f.onA }}" data-err="{{ f.errA }}" style="position:relative;margin-top:4px;"><span data-base="" aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--c-line);pointer-events:none;"></span><span data-bar="" aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--c-text);pointer-events:none;"></span>
+<sc-if value="{{ f.isInput }}" hint-placeholder-val="{{ true }}"><input id="{{ f.domId }}" data-lf="" type="{{ f.type }}" inputMode="{{ f.im }}" autoComplete="{{ f.ac }}" value="{{ f.value }}" placeholder="{{ f.ph }}" aria-invalid="{{ f.invalid }}" aria-required="{{ f.req }}" onChange="{{ f.onChange }}" onFocus="{{ f.onFocus }}" onBlur="{{ f.onBlur }}" style="display:block;width:100%;height:40px;box-sizing:border-box;padding:0;border:0;background:transparent;font:400 16px/1.5 'IBM Plex Sans',sans-serif;color:var(--c-text);"></sc-if>
+<sc-if value="{{ f.isSelect }}" hint-placeholder-val="{{ false }}"><select id="{{ f.domId }}" data-lf="" data-lf-sel="" value="{{ f.value }}" onChange="{{ f.onChange }}" onFocus="{{ f.onFocus }}" onBlur="{{ f.onBlur }}" style="display:block;width:100%;height:40px;box-sizing:border-box;padding:0 28px 0 0;border:0;background:transparent;font:400 16px/1.5 'IBM Plex Sans',sans-serif;color:var(--c-text);cursor:pointer;"><option value="Діагностика">Діагностика</option><option value="Технічне обслуговування">Технічне обслуговування</option><option value="Двигун">Двигун</option><option value="Ходова та кермування">Ходова та кермування</option><option value="КПП та трансмісія">КПП та трансмісія</option><option value="Гальмівна система">Гальмівна система</option><option value="Автоелектрика">Автоелектрика</option><option value="Кузовні та зварювальні">Кузовні та зварювальні</option><option value="Не знаю — потрібна діагностика">Не знаю — потрібна діагностика</option></select><span aria-hidden="true" style="position:absolute;right:0;top:12px;display:flex;color:var(--c-text-3);pointer-events:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></sc-if>
+<sc-if value="{{ f.isArea }}" hint-placeholder-val="{{ false }}"><textarea id="{{ f.domId }}" data-lf="" rows="3" value="{{ f.value }}" placeholder="{{ f.ph }}" onChange="{{ f.onChange }}" onFocus="{{ f.onFocus }}" onBlur="{{ f.onBlur }}" style="display:block;width:100%;height:80px;box-sizing:border-box;padding:8px 0;border:0;background:transparent;resize:none;font:400 16px/1.5 'IBM Plex Sans',sans-serif;color:var(--c-text);"></textarea></sc-if>
+</div>
+<sc-if value="{{ f.err }}" hint-placeholder-val="{{ false }}"><div id="{{ f.errId }}" role="alert" style="display:flex;align-items:center;gap:8px;padding:4px 0 8px;font:400 14px/1.45 'IBM Plex Sans',sans-serif;color:var(--c-err);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>{{ f.err }}</div></sc-if>
+</div>
+</sc-for>
+</div>
+<div style="margin-top:32px;display:flex;"><button type="button" data-cta="" disabled="{{ loading }}" aria-busy="{{ loading }}" onClick="{{ submit }}" style="--pl:24px;--pr:60px;position:relative;display:flex;align-items:center;width:{{ btnW }};height:48px;box-sizing:border-box;padding:0 var(--pr) 0 var(--pl);border:0;border-radius:4px;background:var(--primary);color:var(--on-primary);font:600 16px/1 'IBM Plex Sans',sans-serif;white-space:nowrap;cursor:{{ btnCursor }};">{{ btnLabel }}<span data-sq="" style="position:absolute;top:4px;left:calc(100% - 44px);display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:4px;background:#F4F5F6;color:#E0001B;"><sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}"><svg data-spin="" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg></sc-if><sc-if value="{{ idle }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></sc-if></span></button></div>
+</sc-if>
+<sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;">
+<span style="display:flex;color:#2F9E5B;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>
+<h3 style="margin:24px 0 0;font:600 {{ h3 }} 'Fira Sans Condensed',sans-serif;letter-spacing:-0.01em;color:var(--c-text);">Заявку отримали</h3>
+<p style="margin:12px 0 0;font:400 16px/1.5 'IBM Plex Sans',sans-serif;color:var(--c-text-2);">Передзвонимо за 5–10 хвилин у робочий час</p>
+<a href="tel:+380936401357" data-tl="" style="margin-top:32px;display:flex;align-items:center;gap:8px;min-height:44px;font:500 16px/1.5 'IBM Plex Sans',sans-serif;color:var(--c-text);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>Зателефонувати зараз</a>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;564px&quot;,&quot;height&quot;:&quot;620px&quot;},&quot;mob&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;preset&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;idle&quot;,&quot;focus&quot;,&quot;error&quot;,&quot;loading&quot;,&quot;success&quot;],&quot;default&quot;:&quot;idle&quot;,&quot;tsType&quot;:&quot;'idle'|'focus'|'error'|'loading'|'success'&quot;}}">
+const SERVICES = ['Діагностика', 'Технічне обслуговування', 'Двигун', 'Ходова та кермування', 'КПП та трансмісія', 'Гальмівна система', 'Автоелектрика', 'Кузовні та зварювальні', 'Не знаю — потрібна діагностика'];
+const fmtPhone = (raw, prev) => {
+  let d = String(raw).replace(/\D/g, '');
+  if (!d || (d.length <= 3 && String(raw).length < String(prev || '').length)) return '';
+  if (!d.startsWith('380')) d = '380' + d.replace(/^3?8?0?/, '');
+  d = d.slice(0, 12);
+  return ('+380 ' + d.slice(3, 5) + ' ' + d.slice(5, 8) + ' ' + d.slice(8, 10) + ' ' + d.slice(10, 12)).replace(/\s+$/, '').replace(/\s{2,}/g, ' ');
+};
+let uidSeq = 0;
+class Component extends DCLogic {
+  cardRef = React.createRef();
+  uid = 'lf' + (++uidSeq);
+  constructor(props) {
+    super(props);
+    const p = props.preset || 'idle';
+    const filled = { name: 'Олександр', phone: '+380 93 640 13 57', car: 'Toyota Hilux, 2017', service: SERVICES[3], issue: 'Стук спереду на нерівностях' };
+    const base = { name: '', phone: '', car: '', service: SERVICES[8], issue: '' };
+    this.state = {
+      v: p === 'loading' || p === 'success' ? filled : p === 'focus' ? { ...base, name: 'Олександр', phone: '+380 93 64' } : p === 'error' ? { ...base, name: 'Олександр', phone: '+380 93 6', car: 'Toyota Hilux, 2017' } : base,
+      focus: p === 'focus' ? 'phone' : null,
+      errs: p === 'error' ? { phone: 'Введіть номер у форматі +380...' } : {},
+      consent: p === 'loading' || p === 'success' || p === 'error',
+      consentErr: false,
+      status: p === 'loading' ? 'loading' : p === 'success' ? 'done' : 'idle',
+      minH: p === 'success' ? (props.mob ? '560px' : '600px') : null
+    };
+  }
+  componentWillUnmount() { clearTimeout(this.t); }
+  set(k, val) { this.setState(s => { const errs = { ...s.errs }; delete errs[k]; return { v: { ...s.v, [k]: val }, errs }; }); }
+  submit = () => {
+    if (this.state.status !== 'idle') return;
+    const v = this.state.v, errs = {};
+    if (!v.name.trim()) errs.name = "Вкажіть ім'я";
+    if (v.phone.replace(/\D/g, '').length !== 12) errs.phone = 'Введіть номер у форматі +380...';
+    if (!v.car.trim()) errs.car = 'Вкажіть марку, модель і рік';
+    if (Object.keys(errs).length) { this.setState({ errs }); return; }
+    const h = this.cardRef.current ? this.cardRef.current.offsetHeight + 'px' : null;
+    this.setState({ status: 'loading', minH: h });
+    this.t = setTimeout(() => this.setState({ status: 'done' }), 1600);
+  };
+  renderVals() {
+    const mob = !!this.props.mob, { v, focus, errs, status } = this.state;
+    const def = {
+      name: { label: "Ім'я", type: 'text', ac: 'given-name', ph: 'Як до вас звертатись', req: true },
+      phone: { label: 'Телефон', type: 'tel', im: 'tel', ac: 'tel', ph: '+380 __ ___ __ __', req: true },
+      car: { label: 'Авто', type: 'text', ac: 'off', ph: 'Марка, модель, рік', req: true },
+      service: { label: 'Послуга', kind: 'select', req: true },
+      issue: { label: 'Що турбує', kind: 'area', ph: 'Стук спереду, тріщина на рамі, важко заводиться...', opt: true }
+    };
+    const order = mob ? ['phone', 'name', 'car', 'service', 'issue'] : ['name', 'phone', 'car', 'service', 'issue'];
+    const fields = order.map((k, i) => {
+      const d = def[k], err = errs[k], foc = focus === k;
+      const half = !mob && i < 2;
+      return {
+        ...d, value: v[k], err: err || '', invalid: err ? 'true' : 'false', req: d.req ? 'true' : 'false',
+        domId: this.uid + '-' + k, errId: this.uid + '-' + k + '-e', opt: !!d.opt, im: d.im || 'text', ac: d.ac || 'off',
+        isInput: !d.kind, isSelect: d.kind === 'select', isArea: d.kind === 'area',
+        col: half ? 'span 1' : '1 / -1', pl: half && i === 1 ? '24px' : '0', pr: half && i === 0 ? '24px' : '0', bl: half && i === 1 ? '1px solid var(--c-line)' : '0',
+        onA: err || foc ? '' : undefined, errA: err ? '' : undefined,
+        onChange: (e) => this.set(k, k === 'phone' ? fmtPhone(e.target.value, v.phone) : e.target.value),
+        onFocus: () => this.setState(s => ({ focus: k, v: k === 'phone' && !s.v.phone ? { ...s.v, phone: '+380 ' } : s.v })),
+        onBlur: () => this.setState(s => ({ focus: s.focus === k ? null : s.focus, v: k === 'phone' && s.v.phone.trim() === '+380' ? { ...s.v, phone: '' } : s.v }))
+      };
+    });
+    const loading = status === 'loading';
+    return {
+      cardRef: this.cardRef, fields,
+      cols: mob ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))', pad: mob ? '24px' : '32px', h3: mob ? '24px/1.2' : '32px/1.2', minH: this.state.minH || 'auto',
+      isForm: status !== 'done', isDone: status === 'done', loading, idle: !loading,
+      consent: this.state.consent, consentErr: this.state.consentErr, cbH: mob ? '44px' : '24px',
+      cbBorder: this.state.consentErr ? 'var(--c-err)' : this.state.consent ? 'var(--c-text)' : 'var(--c-text-3)', cbBg: this.state.consent ? 'var(--c-text)' : 'transparent',
+      toggleConsent: () => this.setState(s => ({ consent: !s.consent, consentErr: false })),
+      btnLabel: loading ? 'Відправляємо...' : 'Відправити заявку', btnW: mob ? '100%' : 'auto', btnCursor: loading ? 'progress' : 'pointer',
+      submit: this.submit
+    };
+  }
+}
+</script>
+</body>
+</html>

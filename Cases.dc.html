@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>[data-theme="dark"] [data-cases]{--cs-card:#181B1F;--cs-chip:#262B31}[data-theme="light"] [data-cases]{--cs-card:#FFFFFF;--cs-chip:#E8EAEC}
+[data-cs-card]{transition:box-shadow .3s cubic-bezier(.65,0,.35,1)}[data-cs-card]:hover,[data-cs-card][data-force-hover]{box-shadow:var(--shadow-1)}
+[data-cs-card] [data-cs-img]{transition:transform .3s cubic-bezier(.65,0,.35,1)}[data-cs-card]:hover [data-cs-img],[data-cs-card][data-force-hover] [data-cs-img]{transform:scale(1.03)}
+[data-cs-btn]{transition:background-color .35s cubic-bezier(.65,0,.35,1),color .35s cubic-bezier(.65,0,.35,1)}[data-cs-btn] svg{transition:transform .45s cubic-bezier(.65,0,.35,1)}[data-cs-btn]:hover{background:var(--secm-h,var(--text))!important;color:var(--secm-ht,var(--bg))!important}[data-cs-btn]:hover svg{transform:translate(2px,-2px)}
+[data-secb]{transition:background-color .35s cubic-bezier(.65,0,.35,1),color .35s cubic-bezier(.65,0,.35,1),padding .45s cubic-bezier(.65,0,.35,1)}[data-secb] [data-sq]{transition:left .45s cubic-bezier(.65,0,.35,1)}[data-secb]:hover,[data-secb][data-force]{background:var(--text)!important;color:var(--bg)!important;padding-left:44px!important;padding-right:16px!important}[data-secb] [data-sq]{transition:left .45s cubic-bezier(.65,0,.35,1),background-color .35s,color .35s}[data-secb]:hover [data-sq],[data-secb][data-force] [data-sq]{left:4px!important;background:var(--sq-h-bg,#0F1114)!important;color:var(--sq-h-fg,#FF3B4A)!important}
+[data-cs-track]{scrollbar-width:none}[data-cs-track]::-webkit-scrollbar{display:none}
+[data-cs-card]:focus-visible,[data-cs-btn]:focus-visible{outline:2px solid #E0001B;outline-offset:2px}</style>
+</helmet>
+<sc-if value="{{ isDesk }}" hint-placeholder-val="{{ true }}">
+<section data-cases="" aria-labelledby="cases-h" style="width:100%;box-sizing:border-box;background:var(--bg);padding:96px 24px;">
+<div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:48px;">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;">
+<h2 id="cases-h" style="margin:0;font:600 48px/1.15 'Fira Sans Condensed',sans-serif;letter-spacing:-0.02em;color:var(--text);">Складні випадки, <span style="color:var(--text-mute);">які ми закрили</span></h2>
+<a href="#" data-secb="" style="flex-shrink:0;position:relative;display:flex;align-items:center;height:40px;box-sizing:border-box;padding:0 44px 0 16px;border-radius:4px;background:var(--btn,#262B31);color:var(--btn-text,#F4F5F6);font:600 14px/1 'IBM Plex Sans',sans-serif;white-space:nowrap;">Усі кейси<span data-sq="" style="position:absolute;top:4px;left:calc(100% - 36px);display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:4px;background:#F4F5F6;color:#E0001B;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></span></a>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;">
+<sc-for list="{{ cases }}" as="c" hint-placeholder-count="3">
+<a href="#" data-cs-card="" data-force-hover="{{ c.hover }}" style="display:flex;flex-direction:column;border-radius:8px;border:1px solid var(--border);background:var(--cs-card);overflow:hidden;color:inherit;">
+<div style="position:relative;aspect-ratio:4 / 3;overflow:hidden;background:var(--cs-chip);"><div data-cs-img="" style="position:absolute;inset:0;filter:grayscale(.15) brightness(.96);"><img src="{{ c.img }}" alt="{{ c.ph }}" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;"></div><div aria-hidden="true" style="position:absolute;inset:0;background:rgba(15,17,20,.06);pointer-events:none;"></div></div>
+<div style="flex:1;display:flex;flex-direction:column;padding:32px;">
+<div style="font:500 14px/1.45 'IBM Plex Sans',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-2);">{{ c.eyebrow }}</div>
+<h3 style="margin:12px 0 0;min-height:2.4em;font:600 32px/1.2 'Fira Sans Condensed',sans-serif;letter-spacing:-0.01em;color:var(--text);text-wrap:balance;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">{{ c.title }}</h3>
+<div style="margin-top:auto;padding-top:24px;display:flex;gap:8px;"><span style="display:flex;align-items:center;height:32px;padding:0 12px;border-radius:2px;background:var(--cs-chip);font:400 14px/1 'IBM Plex Sans',sans-serif;color:var(--text);">{{ c.cat }}</span><span style="display:flex;align-items:center;height:32px;padding:0 12px;border-radius:2px;background:var(--cs-chip);font:400 14px/1 'IBM Plex Sans',sans-serif;color:var(--text);">{{ c.term }}</span></div>
+</div>
+</a>
+</sc-for>
+</div>
+</div>
+</section>
+</sc-if>
+<sc-if value="{{ isMob }}" hint-placeholder-val="{{ false }}">
+<section data-cases="" aria-labelledby="cases-hm" style="width:100%;box-sizing:border-box;background:var(--bg);padding:64px 0;display:flex;flex-direction:column;">
+<h2 id="cases-hm" style="margin:0;padding:0 16px;font:600 32px/1.15 'Fira Sans Condensed',sans-serif;letter-spacing:-0.01em;color:var(--text);">Складні випадки, <span style="color:var(--text-mute);">які ми закрили</span></h2>
+<div data-cs-track="" style="margin-top:32px;display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;padding:0 16px 8px;-webkit-overflow-scrolling:touch;">
+<sc-for list="{{ cases }}" as="c" hint-placeholder-count="3">
+<a href="#" data-cs-card="" style="flex:0 0 calc((100% + 32px) * .85);scroll-snap-align:start;display:flex;flex-direction:column;border-radius:8px;border:1px solid var(--border);background:var(--cs-card);overflow:hidden;color:inherit;box-sizing:border-box;">
+<div style="position:relative;aspect-ratio:4 / 3;overflow:hidden;background:var(--cs-chip);"><div data-cs-img="" style="position:absolute;inset:0;filter:grayscale(.15) brightness(.96);"><img src="{{ c.img }}" alt="{{ c.ph }}" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;"></div><div aria-hidden="true" style="position:absolute;inset:0;background:rgba(15,17,20,.06);pointer-events:none;"></div></div>
+<div style="flex:1;display:flex;flex-direction:column;padding:24px;">
+<div style="font:500 14px/1.45 'IBM Plex Sans',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-2);">{{ c.eyebrow }}</div>
+<h3 style="margin:12px 0 0;min-height:2.4em;font:600 24px/1.2 'Fira Sans Condensed',sans-serif;color:var(--text);text-wrap:balance;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">{{ c.title }}</h3>
+<div style="margin-top:auto;padding-top:16px;display:flex;gap:8px;"><span style="display:flex;align-items:center;height:32px;padding:0 12px;border-radius:2px;background:var(--cs-chip);font:400 14px/1 'IBM Plex Sans',sans-serif;color:var(--text);">{{ c.cat }}</span><span style="display:flex;align-items:center;height:32px;padding:0 12px;border-radius:2px;background:var(--cs-chip);font:400 14px/1 'IBM Plex Sans',sans-serif;color:var(--text);">{{ c.term }}</span></div>
+</div>
+</a>
+</sc-for>
+</div>
+<div style="padding:0 16px;"><a href="#" data-secb="" style="position:relative;margin-top:24px;display:flex;align-items:center;justify-content:center;width:100%;height:40px;box-sizing:border-box;padding:0 44px 0 16px;border-radius:4px;background:var(--btn,#262B31);color:var(--btn-text,#F4F5F6);font:600 14px/1 'IBM Plex Sans',sans-serif;white-space:nowrap;">Усі кейси<span data-sq="" style="position:absolute;top:4px;left:calc(100% - 36px);display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:4px;background:#F4F5F6;color:#E0001B;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></span></a></div>
+</section>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;900px&quot;},&quot;mob&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;hover&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;none&quot;,&quot;card&quot;],&quot;default&quot;:&quot;none&quot;,&quot;tsType&quot;:&quot;'none'|'card'&quot;}}">
+const CASES = [
+  { eyebrow: 'Mitsubishi L200', title: 'Тріщина лонжерона після ДТП', cat: 'Рама', term: '6 днів', slot: 'case-1', img: 'assets/cases/rama.jpg', ph: 'рама пікапа на підйомнику, свіжий зварний шов' },
+  { eyebrow: 'Toyota Hilux', title: 'Стук спереду на бездоріжжі', cat: 'Ходова', term: '2 дні', slot: 'case-2', img: 'assets/cases/hodova.jpg', ph: 'передня підвіска Hilux на підйомнику, нові важелі' },
+  { eyebrow: 'Volkswagen Crafter', title: 'Важкий запуск і дим', cat: 'Паливна система', term: '3 дні', slot: 'case-3', img: 'assets/cases/forsunki.jpg', ph: 'форсунки Crafter на випробувальному стенді' }
+];
+class Component extends DCLogic {
+  renderVals() {
+    const mob = !!this.props.mob, hv = this.props.hover && this.props.hover !== 'none';
+    return {
+      isDesk: !mob, isMob: mob,
+      cases: CASES.map((c, i) => ({ ...c, hover: hv && i === 0 ? '' : undefined }))
+    };
+  }
+}
+</script>
+</body>
+</html>
