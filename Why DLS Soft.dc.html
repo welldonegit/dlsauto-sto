@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Fira+Sans+Condensed:wght@600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+[data-wdl]{--e:cubic-bezier(.22,1,.36,1)}
+[data-wdl] [data-wr]{opacity:0;transform:translate3d(0,16px,0);transition:opacity 360ms var(--e) calc(var(--i) * 60ms),transform 360ms var(--e) calc(var(--i) * 60ms)}
+[data-wdl] [data-wl][data-in] [data-wr]{opacity:1;transform:none}
+[data-wplay]{transition:background-color 200ms var(--e),transform 120ms var(--e)}
+[data-wplay]:hover{transform:scale(1.06)}
+[data-wplay]:active{transform:scale(.97)}
+[data-wplay]:focus-visible{outline:2px solid #E0001B;outline-offset:2px}
+
+[data-wtape]{outline:none}
+[data-wtape]:focus-visible{box-shadow:0 0 0 2px #0F1114,0 0 0 4px #E0001B}
+@media (prefers-reduced-motion:reduce){[data-wdl] [data-wr]{opacity:1;transform:none;transition:none}[data-wplay],[data-wplay] [data-wpc]{transition:none}}
+</style>
+</helmet>
+<section aria-labelledby="{{ hid }}" data-wdl="" style="width:100%;box-sizing:border-box;background:#0F1114;padding:{{ pad }};">
+<div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:{{ layerGap }};">
+
+<div data-wl="" ref="{{ l1 }}" style="display:flex;flex-direction:column;align-items:flex-start;">
+<h2 id="{{ hid }}" data-wr="" style="--i:0;margin:0;max-width:1040px;font:600 {{ h2 }};letter-spacing:{{ h2ls }};color:#F4F5F6;text-wrap:balance;">Беремо те, від чого відмовляються інші СТО. <span style="color:#8F8F92;">Рами, мости, паливна апаратура&nbsp;— техніка, яка працює, має працювати.</span></h2>
+
+</div>
+
+<div data-wl="" ref="{{ l2 }}">
+<div data-wr="" ref="{{ mediaRef }}" style="--i:0;position:relative;width:100%;aspect-ratio:{{ ratio }};overflow:hidden;border-radius:{{ mr }};background:#181B1F;">
+<sc-if value="{{ notPlaying }}" hint-placeholder-val="{{ true }}">
+<div ref="{{ parRef }}" style="position:absolute;left:0;right:0;top:-6%;bottom:-6%;will-change:transform;">
+<img src="{{ img }}" alt="{{ alt }}" style="display:block;width:100%;height:100%;object-fit:cover;">
+</div>
+<sc-if value="{{ isVideo }}" hint-placeholder-val="{{ true }}">
+<button type="button" data-wplay="" onClick="{{ play }}" aria-label="Відтворити відео «Як ми працюємо», 2:40" style="position:absolute;left:50%;top:50%;margin:-36px 0 0 -36px;display:flex;align-items:center;justify-content:center;width:72px;height:72px;padding:0;border:0;border-radius:999px;background:#F4F5F6;color:#0F1114;cursor:pointer;"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" style="margin-left:3px;"><path d="M7 4.5v15l12.5-7.5z"></path></svg></button>
+</sc-if>
+</sc-if>
+<sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}">
+<video src="{{ videoSrc }}" poster="{{ img }}" controls="" autoPlay="" playsInline="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0F1114;"></video>
+</sc-if>
+</div>
+</div>
+
+<sc-if value="{{ showReviews }}" hint-placeholder-val="{{ true }}">
+<div data-wl="" ref="{{ l3 }}" style="display:flex;flex-direction:column;gap:{{ revGap }};">
+<div data-wr="" data-wtape="" tabindex="0" role="region" aria-roledescription="стрічка" aria-label="Відгуки клієнтів. Стрілки ліворуч і праворуч гортають стрічку" onKeyDown="{{ onKey }}" onMouseEnter="{{ pauseOn }}" onMouseLeave="{{ pauseOff }}" onFocus="{{ focusOn }}" onBlur="{{ focusOff }}" style="--i:0;margin:0 {{ bleed }};overflow:hidden;border-radius:24px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 {{ fade }},#000 calc(100% - {{ fade }}),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 {{ fade }},#000 calc(100% - {{ fade }}),transparent 100%);">
+<div ref="{{ trackRef }}" style="display:flex;width:max-content;will-change:transform;">
+<sc-for list="{{ sets }}" as="set" hint-placeholder-count="2">
+<ul aria-hidden="{{ set.hidden }}" style="display:flex;gap:{{ cardGap }};margin:0;padding:0 {{ cardGap }} 0 0;list-style:none;">
+<sc-for list="{{ set.items }}" as="r" hint-placeholder-count="6">
+<li style="flex-shrink:0;width:{{ cardW }};box-sizing:border-box;min-height:{{ cardH }};display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding:{{ cardPad }};border-radius:24px;background:#181B1F;box-shadow:inset 0 0 0 1px #262B31;">
+<blockquote style="margin:0;display:flex;flex-direction:column;gap:16px;"><span aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:rgba(224,0,27,.1);color:#FF3B4A;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg></span><p style="margin:0;font:400 {{ qf }};color:#7D848D;text-wrap:pretty;">Текст відгуку. Реальну цитату клієнта додамо після публікації відгуку.</p></blockquote>
+<div style="display:flex;flex-direction:column;gap:4px;">
+<span style="font:500 16px/1.5 'IBM Plex Sans',sans-serif;color:#F4F5F6;">{{ r.name }}</span>
+<span style="display:flex;flex-wrap:wrap;column-gap:12px;font:400 14px/1.45 'IBM Plex Sans',sans-serif;"><span style="color:#A9AFB6;">{{ r.car }}</span><span style="color:#7D848D;">{{ r.city }}</span></span>
+</div>
+</li>
+</sc-for>
+</ul>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+</div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mob&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;media&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;video&quot;,&quot;photo&quot;],&quot;default&quot;:&quot;video&quot;,&quot;tsType&quot;:&quot;'video'|'photo'&quot;},&quot;reviews&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;videoSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;poster&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string&quot;},&quot;photo&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string&quot;}}">
+const REVIEWS = [
+  ['Олександр К.', 'Toyota Hilux', 'Запоріжжя'],
+  ['Ігор М.', 'Mitsubishi L200', 'Вільнянськ'],
+  ['Андрій С.', 'Volkswagen Crafter', 'Дніпро'],
+  ['Дмитро П.', 'Nissan Navara', 'Запоріжжя'],
+  ['Сергій Л.', 'Ford Ranger', 'Комишуваха'],
+  ['Віталій Т.', 'Mercedes-Benz Sprinter', 'Запоріжжя']
+].map(([name, car, city]) => ({ name, car, city }));
+class Component extends DCLogic {
+  state = { playing: false };
+  l1 = React.createRef(); l2 = React.createRef(); l3 = React.createRef();
+  mediaRef = React.createRef(); parRef = React.createRef(); trackRef = React.createRef();
+  off = 0; target = null; hover = false; focus = false;
+  componentDidMount() {
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const layers = () => [this.l1, this.l2, this.l3].map(r => r.current).filter(Boolean);
+    this.io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const ls = layers(), k = ls.indexOf(e.target);
+      ls.slice(0, k + 1).forEach((el, j) => { if (!el.dataset.in) setTimeout(() => { el.dataset.in = '1'; }, j * 120); });
+    }), { threshold: 0.2 });
+    this.watch();
+    this.fb = setTimeout(() => [this.l1, this.l2, this.l3].forEach((r, j) => { const el = r.current; if (el && !el.dataset.in) setTimeout(() => { el.dataset.in = '1'; }, j * 120); }), 1500);
+    this.onScroll = () => this.parallax();
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll);
+    this.parallax();
+    let last = performance.now();
+    const tick = (t) => {
+      const dt = Math.min(64, t - last); last = t;
+      this.step(dt);
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+  componentDidUpdate() { this.watch(); this.parallax(); }
+  componentWillUnmount() { clearTimeout(this.fb); this.io && this.io.disconnect(); cancelAnimationFrame(this.raf); window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onScroll); }
+  watch() { [this.l1, this.l2, this.l3].forEach(r => { const el = r.current; if (el && !el.dataset.w) { el.dataset.w = '1'; if (this.reduced) el.dataset.in = '1'; else this.io.observe(el); } }); }
+  parallax() {
+    const m = this.mediaRef.current, p = this.parRef.current;
+    if (!m || !p || this.reduced) { if (p) p.style.transform = 'none'; return; }
+    const r = m.getBoundingClientRect(), vh = window.innerHeight;
+    const k = Math.max(-1, Math.min(1, ((r.top + r.height / 2) - vh / 2) / (vh / 2 + r.height / 2)));
+    p.style.transform = 'translate3d(0,' + (k * r.height * 0.05).toFixed(1) + 'px,0)';
+  }
+  half() { const tr = this.trackRef.current; return tr && tr.firstElementChild ? tr.firstElementChild.getBoundingClientRect().width : 0; }
+  stepW() { const tr = this.trackRef.current; const li = tr && tr.querySelector('li'); return li ? li.getBoundingClientRect().width + (this.props.mob ? 16 : 24) : 400; }
+  step(dt) {
+    const tr = this.trackRef.current, H = this.half();
+    if (!tr || !H) return;
+    if (this.target !== null) {
+      const d = this.target - this.off;
+      this.off += d * Math.min(1, dt / 120);
+      if (Math.abs(d) < 0.5) { this.off = this.target; this.target = null; }
+    } else if (!this.hover && !this.focus && !this.reduced) {
+      this.off += dt * 0.024;
+    }
+    if (this.off >= H) { this.off -= H; if (this.target !== null) this.target -= H; }
+    if (this.off < 0) { this.off += H; if (this.target !== null) this.target += H; }
+    tr.style.transform = 'translate3d(' + (-this.off).toFixed(2) + 'px,0,0)';
+  }
+  onKey = (e) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    e.preventDefault();
+    const s = this.stepW() * (e.key === 'ArrowRight' ? 1 : -1);
+    this.target = (this.target ?? this.off) + s;
+  };
+  renderVals() {
+    const mob = !!this.props.mob, media = this.props.media === 'photo' ? 'photo' : 'video';
+    const playing = this.state.playing && media === 'video';
+    return {
+      mob, dsk: !mob, hid: mob ? 'why-dls-hm' : 'why-dls-h',
+      pad: mob ? '64px 16px' : '96px 24px', layerGap: mob ? '48px' : '64px',
+      h2: mob ? "32px/1.15 'Fira Sans Condensed',sans-serif" : "48px/1.15 'Fira Sans Condensed',sans-serif", h2ls: mob ? '-0.01em' : '-0.02em',
+      ratio: '16 / 6', mr: mob ? '24px' : '32px', plateInset: mob ? '16px' : '24px',
+      isVideo: media === 'video', isPhoto: media === 'photo', playing, notPlaying: !playing,
+      img: media === 'video' ? (this.props.poster || 'assets/cases/rama.jpg') : (this.props.photo || 'assets/cases/rama.jpg'),
+      alt: media === 'video' ? 'Кадр з цеху DLS: рама пікапа на підйомнику' : 'Цех DLS: рамний пікап на підйомнику',
+      videoSrc: this.props.videoSrc || '',
+      play: () => this.setState({ playing: true }),
+      showReviews: this.props.reviews !== false,
+      revGap: mob ? '16px' : '24px', bleed: mob ? '-16px' : '0', fade: mob ? '16px' : '48px',
+      cardW: mob ? '296px' : '384px', cardH: mob ? '224px' : '256px', cardPad: mob ? '24px' : '32px', cardGap: mob ? '16px' : '24px',
+      qf: mob ? "16px/1.5 'IBM Plex Sans',sans-serif" : "18px/1.55 'IBM Plex Sans',sans-serif",
+      sets: [{ hidden: 'false', items: REVIEWS }, { hidden: 'true', items: REVIEWS }],
+      l1: this.l1, l2: this.l2, l3: this.l3, mediaRef: this.mediaRef, parRef: this.parRef, trackRef: this.trackRef,
+      onKey: this.onKey,
+      pauseOn: () => { this.hover = true; }, pauseOff: () => { this.hover = false; },
+      focusOn: () => { this.focus = true; }, focusOff: () => { this.focus = false; }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,4 +1,12 @@
 {
   "cleanUrls": false,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/contacts", "destination": "/Contacts Soft.dc.html" },
+    { "source": "/prices", "destination": "/Prices Soft.dc.html" },
+    { "source": "/blog", "destination": "/Blog Soft.dc.html" },
+    { "source": "/cases", "destination": "/Cases Soft.dc.html" },
+    { "source": "/reviews", "destination": "/Reviews Soft.dc.html" },
+    { "source": "/faq", "destination": "/FAQ Soft.dc.html" }
+  ]
 }

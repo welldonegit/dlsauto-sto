@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap&subset=cyrillic" rel="stylesheet">
+</helmet>
+<span data-category-chip="" style="--cc:{{ rgb }};display:inline-flex;align-items:center;gap:{{ gap }};height:{{ h }};padding:0 {{ pr }} 0 {{ pl }};box-sizing:border-box;border-radius:12px;background:linear-gradient(180deg,rgba(var(--cc),.24) 0%,rgba(var(--cc),.10) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 0 0 1px rgba(var(--cc),.26),inset 0 -1px 0 rgba(0,0,0,.24),0 8px 24px -12px rgba(var(--cc),.35);-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);color:rgb(var(--cc));text-shadow:0 1px 0 rgba(0,0,0,.25);font:500 {{ fs }}/1 'IBM Plex Sans',sans-serif;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;"><span aria-hidden="true" style="width:{{ ic }};height:{{ ic }};flex-shrink:0;background:currentColor;-webkit-mask:{{ mask }};mask:{{ mask }};"></span>{{ label }}</span>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:260,&quot;height&quot;:64},&quot;cat&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;6&quot;,&quot;7&quot;,&quot;8&quot;],&quot;default&quot;:&quot;3&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;m&quot;,&quot;s&quot;],&quot;default&quot;:&quot;m&quot;,&quot;tsType&quot;:&quot;'m'|'s'&quot;}}">
+const CC_ICONS = {
+  activity: '<path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/>',
+  clipboard: '<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/>',
+  gauge: '<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>',
+  car: '<path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8"/><path d="M7 14h.01"/><path d="M17 14h.01"/><rect width="18" height="8" x="3" y="10" rx="2"/><path d="M5 18v2"/><path d="M19 18v2"/>',
+  cog: '<path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"/><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/><path d="M12 2v2"/><path d="M12 22v-2"/><path d="m17 20.66-1-1.73"/><path d="M11 10.27 7 3.34"/><path d="m20.66 17-1.73-1"/><path d="m3.34 7 1.73 1"/><path d="M14 12h8"/><path d="M2 12h2"/><path d="m20.66 7-1.73 1"/><path d="m3.34 17 1.73-1"/><path d="m17 3.34-1 1.73"/><path d="m11 13.73-4 6.93"/>',
+  disc: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/>',
+  zap: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
+  wrench: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>'
+};
+const CC_CATS = {
+  1: ['Діагностика', 'activity', '212,154,149'], 2: ['Обслуговування', 'clipboard', '116,184,192'], 3: ['Двигун', 'gauge', '169,177,125'], 4: ['Ходова', 'car', '173,163,211'],
+  5: ['Трансмісія', 'cog', '200,164,122'], 6: ['Гальма', 'disc', '137,175,214'], 7: ['Електрика', 'zap', '132,185,156'], 8: ['Кузов', 'wrench', '202,154,185']
+};
+class Component extends DCLogic {
+  renderVals() {
+    const c = CC_CATS[this.props.cat] || CC_CATS[3], s = this.props.size === 's';
+    const mask = 'url("data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + CC_ICONS[c[1]] + '</svg>') + '") center / contain no-repeat';
+    return { label: this.props.label || c[0], rgb: c[2], mask, h: s ? '28px' : '32px', pl: s ? '8px' : '10px', pr: s ? '10px' : '12px', gap: s ? '6px' : '8px', ic: s ? '14px' : '16px', fs: '14px' };
+  }
+}
+</script>
+</body>
+</html>

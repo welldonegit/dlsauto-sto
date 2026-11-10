@@ -8,7 +8,7 @@
 <body>
 <x-dc>
 <helmet>
-<style>[data-theme="dark"] [data-cases]{--cs-card:#181B1F;--cs-chip:#262B31}[data-theme="light"] [data-cases]{--cs-card:#FFFFFF;--cs-chip:#E8EAEC}
+<style>[data-cases]{--cs-card:#181B1F;--cs-chip:#262B31}
 [data-cs-card]{transition:box-shadow .3s cubic-bezier(.65,0,.35,1)}[data-cs-card]:hover,[data-cs-card][data-force-hover]{box-shadow:var(--shadow-1)}
 [data-cs-card] [data-cs-img]{transition:transform .3s cubic-bezier(.65,0,.35,1)}[data-cs-card]:hover [data-cs-img],[data-cs-card][data-force-hover] [data-cs-img]{transform:scale(1.03)}
 [data-cs-btn]{transition:background-color .35s cubic-bezier(.65,0,.35,1),color .35s cubic-bezier(.65,0,.35,1)}[data-cs-btn] svg{transition:transform .45s cubic-bezier(.65,0,.35,1)}[data-cs-btn]:hover{background:var(--secm-h,var(--text))!important;color:var(--secm-ht,var(--bg))!important}[data-cs-btn]:hover svg{transform:translate(2px,-2px)}
@@ -57,10 +57,15 @@
 </section>
 </sc-if>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;900px&quot;},&quot;mob&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;hover&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;none&quot;,&quot;card&quot;],&quot;default&quot;:&quot;none&quot;,&quot;tsType&quot;:&quot;'none'|'card'&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;900px&quot;},&quot;mob&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;set&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;engine&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;'home'|'engine'&quot;},&quot;hover&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;none&quot;,&quot;card&quot;],&quot;default&quot;:&quot;none&quot;,&quot;tsType&quot;:&quot;'none'|'card'&quot;}}">
 const CASES = [
   { eyebrow: 'Mitsubishi L200', title: 'Тріщина лонжерона після ДТП', cat: 'Рама', term: '6 днів', slot: 'case-1', img: 'assets/cases/rama.jpg', ph: 'рама пікапа на підйомнику, свіжий зварний шов' },
   { eyebrow: 'Toyota Hilux', title: 'Стук спереду на бездоріжжі', cat: 'Ходова', term: '2 дні', slot: 'case-2', img: 'assets/cases/hodova.jpg', ph: 'передня підвіска Hilux на підйомнику, нові важелі' },
+  { eyebrow: 'Volkswagen Crafter', title: 'Важкий запуск і дим', cat: 'Паливна система', term: '3 дні', slot: 'case-3', img: 'assets/cases/forsunki.jpg', ph: 'форсунки Crafter на випробувальному стенді' }
+];
+const CASES_ENGINE = [
+  { eyebrow: 'Toyota Land Cruiser Prado', title: 'Перегрів і білий дим з вихлопу', cat: 'Двигун', term: '5 днів', slot: 'case-e1', img: 'assets/services/engine.jpg', ph: 'двигун Prado після заміни прокладки ГБЦ' },
+  { eyebrow: 'Mitsubishi L200', title: 'Стук у двигуні під навантаженням', cat: 'Двигун', term: '7 днів', slot: 'case-e2', img: 'assets/services/diagnostics.jpg', ph: 'діагностика двигуна L200 перед розбиранням' },
   { eyebrow: 'Volkswagen Crafter', title: 'Важкий запуск і дим', cat: 'Паливна система', term: '3 дні', slot: 'case-3', img: 'assets/cases/forsunki.jpg', ph: 'форсунки Crafter на випробувальному стенді' }
 ];
 class Component extends DCLogic {
@@ -68,7 +73,7 @@ class Component extends DCLogic {
     const mob = !!this.props.mob, hv = this.props.hover && this.props.hover !== 'none';
     return {
       isDesk: !mob, isMob: mob,
-      cases: CASES.map((c, i) => ({ ...c, hover: hv && i === 0 ? '' : undefined }))
+      cases: (this.props.set === 'engine' ? CASES_ENGINE : CASES).map((c, i) => ({ ...c, hover: hv && i === 0 ? '' : undefined }))
     };
   }
 }

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Fira+Sans+Condensed:wght@600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+body{margin:0;background:#0F1114;}a{color:#F4F5F6;}a:hover{color:#FF3B4A;}
+[data-ps]{--e:cubic-bezier(.22,1,.36,1);--m:cubic-bezier(.65,0,.35,1)}
+[data-ps-img]{opacity:0;transform:scale(1.06);transition:opacity 700ms var(--e),transform 1400ms var(--e)}
+[data-ps-img][data-on]{opacity:1;transform:none}
+[data-ps-w]{opacity:.32;transition:opacity 360ms var(--e)}[data-ps-w]:hover{opacity:.6}[data-ps-w][data-on]{opacity:1}
+[data-ps-w] [data-ps-mk]{width:0;margin-right:0;transition:width 360ms var(--e),margin-right 360ms var(--e)}
+[data-ps-w][data-on] [data-ps-mk]{width:var(--mk);margin-right:var(--mkg)}
+[data-ps-t]{opacity:0;transform:translate3d(0,16px,0);transition:opacity 360ms var(--e),transform 360ms var(--e);pointer-events:none}
+[data-ps-t][data-on]{opacity:1;transform:none;transition-delay:120ms}
+[data-ps-fill]{transform-origin:50% 0;transform:scaleY(0)}
+[data-ps-cta]{transition:padding 450ms var(--m),background-color 450ms var(--m),color 450ms var(--m),transform 120ms var(--e)}
+[data-ps-cta] [data-ps-cc]{transition:left 450ms var(--m),background-color 450ms var(--m),color 450ms var(--m)}
+[data-ps-cta]:hover{padding:0 24px 0 52px!important;background:#F4F5F6!important;color:#0F1114!important}
+[data-ps-cta]:hover [data-ps-cc]{left:4px!important;background:#0F1114!important;color:#FF3B4A!important}
+[data-ps-cta]:active{transform:scale(.97)}[data-ps-cta]:focus-visible,[data-ps-w]:focus-visible{outline:2px solid #E0001B;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){[data-ps] *{transition:none!important}}
+</style>
+</helmet>
+<section data-ps="" ref="{{ root }}" aria-label="Як ми працюємо" data-screen-label="Процес · скрол" style="position:relative;height:{{ secH }};background:#0F1114;">
+<div style="position:sticky;top:0;height:{{ vh }};overflow:hidden;">
+
+<sc-for list="{{ slides }}" as="s" hint-placeholder-count="3">
+<img data-ps-img="" data-on="{{ s.on }}" src="{{ s.img }}" alt="{{ s.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ s.pos }};">
+</sc-for>
+<div aria-hidden="true" style="position:absolute;inset:0;background:{{ scrim }};"></div>
+
+<div style="position:absolute;inset:0;box-sizing:border-box;padding:{{ pad }};">
+<div style="position:relative;height:100%;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:{{ cols }};grid-template-rows:{{ rows }};column-gap:24px;row-gap:{{ rowGap }};">
+
+<ol style="grid-area:{{ wordsArea }};margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:{{ wGap }};">
+<sc-for list="{{ slides }}" as="s" hint-placeholder-count="3">
+<li><button type="button" data-ps-w="" data-on="{{ s.on }}" aria-current="{{ s.cur }}" onClick="{{ s.go }}" style="--mk:{{ mk }};--mkg:{{ mkg }};display:flex;align-items:center;padding:0;border:0;background:transparent;cursor:pointer;font:600 {{ wordF }} 'Fira Sans Condensed',sans-serif;letter-spacing:-0.02em;color:#F4F5F6;"><span data-ps-mk="" aria-hidden="true" style="flex-shrink:0;height:{{ mk }};border-radius:4px;background:#E0001B;"></span>{{ s.word }}</button></li>
+</sc-for>
+</ol>
+
+<div style="grid-area:{{ lineArea }};position:relative;display:flex;gap:{{ lineGap }};min-height:0;">
+<div aria-hidden="true" style="position:relative;flex-shrink:0;width:2px;border-radius:2px;background:rgba(244,245,246,.18);">
+<div style="position:absolute;left:0;right:0;top:0;height:{{ segH }};top:{{ segTop }};transition:top 360ms cubic-bezier(.22,1,.36,1);">
+<div data-ps-fill="" ref="{{ fillRef }}" style="position:absolute;inset:0;border-radius:2px;background:#E0001B;"></div>
+</div>
+</div>
+<div style="position:relative;flex:1;min-width:0;">
+<sc-for list="{{ slides }}" as="s" hint-placeholder-count="3">
+<div data-ps-t="" data-on="{{ s.on }}" aria-hidden="{{ s.hid }}" style="position:absolute;left:0;right:0;top:0;display:flex;flex-direction:column;align-items:flex-start;gap:20px;">
+<svg aria-hidden="true" width="56" height="40" viewBox="0 0 56 40" style="display:block;"><path fill="#F4F5F6" d="M10 0h46v12H22a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h34v12H10A10 10 0 0 1 0 30V10A10 10 0 0 1 10 0z"></path></svg>
+<p style="margin:0;max-width:440px;font:600 {{ leadF }} 'Fira Sans Condensed',sans-serif;letter-spacing:-0.01em;color:#F4F5F6;text-wrap:balance;">{{ s.lead }}</p>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="grid-area:{{ noteArea }};position:relative;align-self:end;min-height:{{ noteH }};">
+<sc-for list="{{ slides }}" as="s" hint-placeholder-count="3">
+<div data-ps-t="" data-on="{{ s.on }}" aria-hidden="{{ s.hid }}" style="position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:12px;">
+<span style="font:500 14px/1.45 'IBM Plex Sans',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#FF3B4A;">{{ s.eb }}</span>
+<p style="margin:0;max-width:520px;font:400 {{ noteF }} 'IBM Plex Sans',sans-serif;color:#F4F5F6;text-wrap:pretty;">{{ s.note }}</p>
+</div>
+</sc-for>
+</div>
+
+<div style="grid-area:{{ ctaArea }};align-self:end;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 8px 8px {{ ctaPl }};border-radius:999px;background:#181B1F;box-shadow:inset 0 0 0 1px #262B31;">
+<div style="display:flex;flex-direction:column;min-width:0;"><span style="font:500 16px/1.4 'IBM Plex Sans',sans-serif;color:#F4F5F6;white-space:nowrap;">Діагностика в рахунок ремонту</span><span style="font:400 14px/1.45 'IBM Plex Sans',sans-serif;color:#A9AFB6;white-space:nowrap;">Передзвонимо за 5–10 хвилин</span></div>
+<a href="#zapys" data-ps-cta="" style="position:relative;flex-shrink:0;display:flex;align-items:center;height:48px;box-sizing:border-box;padding:0 52px 0 24px;border-radius:999px;background:#E0001B;color:#F4F5F6;font:500 16px/1 'IBM Plex Sans',sans-serif;white-space:nowrap;text-decoration:none;">Записатись<span data-ps-cc="" aria-hidden="true" style="position:absolute;top:4px;left:calc(100% - 44px);display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;background:#F4F5F6;color:#E0001B;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></span></a>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;desktop&quot;,&quot;mobile&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;mob&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const IC = {
+  gauge: '<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>',
+  wrench: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+  key: '<path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"/><path d="m21 2-9.6 9.6"/><circle cx="7.5" cy="15.5" r="5.5"/>'
+};
+const ic = (k) => 'url("data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + IC[k] + '</svg>') + '") center / contain no-repeat';
+const SLIDES = [
+  { word: 'Діагностуємо', lead: 'Перевіряємо на стенді, а не на слух', eb: 'Перший крок', note: 'Знаходимо причину, називаємо вартість і погоджуємо кошторис до початку робіт. Діагностика зараховується у вартість ремонту.', img: 'assets/cases/forsunki.jpg', alt: 'Перевірка форсунок на стенді', pos: '60% 50%', icon: 'gauge' },
+  { word: 'Ремонтуємо', lead: 'Відновлюємо замість заміни, коли це можливо', eb: 'Без очікування', note: 'Власна авторозбірка поруч: нові, аналоги чи б/в. Пропонуємо варіанти, ви обираєте за ціною — не чекаємо постачальників.', img: 'assets/cases/rama.jpg', alt: 'Зварювання рами пікапа', pos: '50% 50%', icon: 'wrench' },
+  { word: 'Повертаємо', lead: 'Віддаємо авто з гарантією і поясненнями', eb: 'Прозорий процес', note: 'Показуємо замінені деталі, розповідаємо, що зроблено і чому, та що перевірити на наступному ТО.', img: 'assets/cases/hodova.jpg', alt: 'Ходова пікапа після ремонту', pos: '50% 50%', icon: 'key' }
+];
+class Component extends DCLogic {
+  state = { i: 0, w: window.innerWidth };
+  root = React.createRef(); fillRef = React.createRef();
+  componentDidMount() {
+    this.onScroll = () => { cancelAnimationFrame(this.r); this.r = requestAnimationFrame(() => this.update()); };
+    this.onResize = () => { this.setState({ w: window.innerWidth }); this.onScroll(); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    this.update();
+  }
+  componentWillUnmount() { cancelAnimationFrame(this.r); window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onResize); }
+  progress() {
+    const el = this.root.current; if (!el) return 0;
+    const r = el.getBoundingClientRect(), span = r.height - window.innerHeight;
+    return span > 0 ? Math.max(0, Math.min(1, -r.top / span)) : 0;
+  }
+  update() {
+    const n = SLIDES.length, p = this.progress() * n, i = Math.min(n - 1, Math.floor(p)), f = Math.min(1, p - i);
+    if (i !== this.state.i) this.setState({ i });
+    const fl = this.fillRef.current; if (fl) fl.style.transform = 'scaleY(' + (i === n - 1 && this.progress() >= 1 ? 1 : f).toFixed(4) + ')';
+  }
+  goTo(k) {
+    const el = this.root.current; if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY, span = el.offsetHeight - window.innerHeight;
+    window.scrollTo({ top: top + span * (k + 0.02) / SLIDES.length, behavior: 'smooth' });
+  }
+  renderVals() {
+    const mob = this.props.mob ?? (this.props.layout === 'mobile' || (this.props.layout !== 'desktop' && this.state.w < 768));
+    const i = this.state.i, n = SLIDES.length;
+    return {
+      root: this.root, fillRef: this.fillRef,
+      secH: (n * 100 + 40) + 'vh', vh: '100vh',
+      scrim: mob ? 'linear-gradient(180deg, rgba(15,17,20,.88) 0%, rgba(15,17,20,.55) 45%, rgba(15,17,20,.94) 100%)' : 'linear-gradient(90deg, rgba(15,17,20,.92) 0%, rgba(15,17,20,.72) 38%, rgba(15,17,20,.35) 70%, rgba(15,17,20,.55) 100%), linear-gradient(0deg, rgba(15,17,20,.85) 0%, rgba(15,17,20,0) 40%)',
+      pad: mob ? '88px 16px 16px' : '128px 24px 32px',
+      cols: mob ? 'minmax(0,1fr)' : 'repeat(12,minmax(0,1fr))',
+      rows: mob ? 'auto minmax(0,1fr) auto auto' : 'minmax(0,1fr) auto',
+      rowGap: mob ? '24px' : '32px',
+      wordsArea: mob ? '1 / 1' : '1 / 1 / 2 / 6', lineArea: mob ? '2 / 1' : '1 / 7 / 2 / 12',
+      noteArea: mob ? '3 / 1' : '2 / 1 / 3 / 6', ctaArea: mob ? '4 / 1' : '2 / 7 / 3 / 12',
+      wordF: mob ? "40px/1.1" : "72px/1.1", wGap: mob ? '4px' : '8px', mk: mob ? '10px' : '14px', mkg: mob ? '12px' : '20px',
+      leadF: mob ? "24px/1.2" : "32px/1.2", lineGap: mob ? '20px' : '32px',
+      segH: (100 / n) + '%', segTop: (100 / n * i) + '%',
+      noteF: mob ? "16px/1.5" : "18px/1.55", noteH: mob ? '120px' : '140px', ctaPl: mob ? '20px' : '28px',
+      slides: SLIDES.map((s, k) => ({ ...s, on: k === i ? '' : undefined, cur: k === i ? 'step' : undefined, hid: k === i ? undefined : 'true', ic: ic(s.icon), go: () => this.goTo(k) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

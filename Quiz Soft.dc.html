@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Fira+Sans+Condensed:wght@600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+[data-qz]{--e:cubic-bezier(.22,1,.36,1)}
+[data-qz] [data-qs]{opacity:0;visibility:hidden;transform:translate3d(var(--qdx,16px),0,0);transition:opacity 200ms var(--e),transform 200ms var(--e),visibility 0s 200ms}
+[data-qz][data-back] [data-qs]{--qdx:-16px}
+[data-qz] [data-qs][data-on]{opacity:1;visibility:visible;transform:none;transition:opacity 360ms var(--e) 120ms,transform 360ms var(--e) 120ms,visibility 0s}
+[data-qt]{transition:background-color 200ms var(--e),color 200ms var(--e),transform 120ms var(--e)}
+[data-qt]:hover{background:#3B4148!important}
+[data-qt][data-sel]{background:#F4F5F6!important;color:#0F1114!important}
+[data-qt]:active{transform:scale(.97)}
+[data-qt]:focus-visible{outline:2px solid #E0001B;outline-offset:2px}
+[data-qr]{transition:background-color 360ms var(--e),box-shadow 360ms var(--e),transform 360ms var(--e)}
+[data-qr] path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 200ms var(--e)}
+[data-qt]:hover [data-qr]{box-shadow:inset 0 0 0 1.5px #A9AFB6!important}
+[data-qt][data-sel] [data-qr]{background:#E0001B;box-shadow:none!important;color:#F4F5F6}
+[data-qt][data-sel] [data-qr] path{stroke-dashoffset:0;transition:stroke-dashoffset 360ms var(--e) 120ms}
+[data-qp]{background:transparent;color:#A9AFB6;transition:background-color 360ms var(--e),color 360ms var(--e)}
+[data-qp] [data-qpn]{box-shadow:inset 0 0 0 1px #3B4148;color:#A9AFB6;transition:background-color 360ms var(--e),color 360ms var(--e),box-shadow 360ms var(--e)}
+[data-qp] [data-qpc]{opacity:0;transform:scale(.6);transition:opacity 200ms var(--e),transform 200ms var(--e)}
+[data-qp] [data-qpd]{transition:opacity 200ms var(--e)}
+[data-qp][data-done]{color:#F4F5F6}
+[data-qp][data-done] [data-qpn]{background:#262B31;box-shadow:none;color:#F4F5F6}
+[data-qp][data-done] [data-qpd]{opacity:0}[data-qp][data-done] [data-qpc]{opacity:1;transform:none}
+[data-qp][data-cur]{background:#F4F5F6;color:#0F1114;cursor:default}[data-qp]:not([data-cur]):not([data-dis]):hover{background:#262B31;color:#F4F5F6}[data-qp][data-dis]{cursor:default}[data-qp]:focus-visible{outline:2px solid #E0001B;outline-offset:2px}
+[data-qp][data-cur] [data-qpn]{background:#E0001B;box-shadow:none;color:#F4F5F6}
+@media (prefers-reduced-motion:reduce){[data-qp],[data-qp] *{transition:none!important}}
+[data-qback]{--m:cubic-bezier(.65,0,.35,1);transition:padding 450ms var(--m),background-color 450ms var(--m),color 450ms var(--m),opacity 200ms var(--e),transform 120ms var(--e)}[data-qback] [data-qbc]{transition:left 450ms var(--m),background-color 450ms var(--m),color 450ms var(--m)}[data-qback]:hover{padding:0 52px 0 20px!important;background:#F4F5F6!important;color:#0F1114!important}[data-qback]:hover [data-qbc]{left:calc(100% - 40px)!important;background:#0F1114!important;color:#FF3B4A!important}[data-qback]:active{transform:scale(.97)}[data-qback]:focus-visible{outline:2px solid #E0001B;outline-offset:2px}
+[data-qf]{outline:none;background:#262B31;box-shadow:inset 0 0 0 1px transparent;transition:background-color 200ms var(--e),box-shadow 200ms var(--e)}
+[data-qf]:hover{background:#3B4148}
+[data-qf]:focus{background:#0F1114!important;box-shadow:inset 0 0 0 1px #7D848D}
+[data-qf][aria-invalid="true"]{box-shadow:inset 0 0 0 1px #F2707A}
+[data-qf]::placeholder{color:#A9AFB6;opacity:1}
+[data-qcb]:focus-visible + span{outline:2px solid #E0001B;outline-offset:2px}
+[data-qcb]:checked + span{background:#F4F5F6!important;box-shadow:none!important}
+[data-qcb]:checked + span svg{opacity:1}
+[data-qcb] + span{transition:background-color 200ms var(--e),box-shadow 200ms var(--e)}
+[data-qcb] + span svg{opacity:0;transition:opacity 200ms var(--e)}
+[data-qbtn]{transition:background-color .35s cubic-bezier(.65,0,.35,1),color .35s cubic-bezier(.65,0,.35,1),padding .45s cubic-bezier(.65,0,.35,1),transform 120ms ease}
+[data-qbtn] [data-qsq]{transition:left .45s cubic-bezier(.65,0,.35,1),background-color .35s,color .35s}
+[data-qbtn]:not([disabled]):hover{background:#F4F5F6!important;color:#0F1114!important;padding-left:68px!important;padding-right:32px!important}
+[data-qbtn]:not([disabled]):hover [data-qsq]{left:4px!important;background:#0F1114!important;color:#FF3B4A!important}
+[data-qbtn]:active{transform:scale(.97)}
+[data-qbtn]:focus-visible{outline:2px solid #E0001B;outline-offset:2px}
+[data-qspin]{animation:qSpin .8s linear infinite}@keyframes qSpin{to{transform:rotate(360deg)}}
+[data-ql]{text-decoration:underline 1px;text-decoration-color:#5A616A;text-underline-offset:6px;transition:color 200ms var(--e),text-decoration-color 200ms var(--e)}[data-ql]:hover{color:#FF3B4A!important;text-decoration-color:currentColor}[data-ql]:focus-visible{outline:2px solid #E0001B;outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){[data-qz] [data-qs],[data-qz] [data-qs][data-on],[data-qt],[data-qr],[data-qr] path,[data-qp] [data-qpl],[data-qbtn],[data-qbtn] [data-qsq]{transition:none!important}[data-qspin]{animation:none}}
+[data-sel] [data-qic]{background:rgba(15,17,20,.06)!important;box-shadow:inset 0 0 0 1px rgba(15,17,20,.10)!important}
+</style>
+</helmet>
+<section aria-labelledby="{{ hid }}" data-screen-label="06 Квіз" style="width:100%;box-sizing:border-box;background:#0F1114;padding:{{ pad }};">
+<div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:{{ headGap }};">
+<div style="display:flex;flex-direction:column;align-items:flex-start;gap:16px;">
+<h2 id="{{ hid }}" style="margin:0;max-width:880px;font:600 {{ h2 }};letter-spacing:{{ h2ls }};color:#F4F5F6;text-wrap:balance;">Не знаєте, що саме зламалось? <span style="color:#8F8F92;">Три питання&nbsp;— і&nbsp;ми підкажемо</span></h2>
+</div>
+
+<div data-qz="" data-back="{{ backA }}" style="display:flex;flex-direction:column;gap:{{ innerGap }};padding:{{ panelPad }};border-radius:{{ panelR }};background:#181B1F;box-shadow:inset 0 0 0 1px #262B31;">
+
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+<ol aria-label="Прогрес" style="margin:0;padding:4px;list-style:none;display:flex;gap:4px;border-radius:999px;background:#0F1114;box-shadow:inset 0 0 0 1px #262B31;">
+<sc-for list="{{ prog }}" as="p" hint-placeholder-count="3">
+<li style="display:flex;"><button type="button" data-qp="" data-cur="{{ p.curA }}" data-done="{{ p.doneA }}" data-dis="{{ p.disA }}" aria-current="{{ p.cur }}" disabled="{{ p.dis }}" onClick="{{ p.go }}" style="display:flex;align-items:center;gap:10px;height:40px;box-sizing:border-box;padding:0 {{ progPr }} 0 8px;border:0;border-radius:999px;font:500 14px/1 'IBM Plex Sans',sans-serif;white-space:nowrap;cursor:pointer;">
+<span data-qpn="" aria-hidden="true" style="position:relative;flex-shrink:0;display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;font:500 12px/1 'IBM Plex Sans',sans-serif;font-variant-numeric:tabular-nums;"><span data-qpd="">{{ p.k }}</span><svg data-qpc="" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;"><path d="M20 6 9 17l-5-5"></path></svg></span><span data-qplb="">{{ p.label }}</span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">{{ p.sr }}</span>
+</button></li>
+</sc-for>
+</ol>
+<button type="button" data-qback="" onClick="{{ back }}" aria-hidden="{{ backHidden }}" tabIndex="{{ backTab }}" style="position:relative;flex-shrink:0;display:flex;align-items:center;height:44px;box-sizing:border-box;padding:0 20px 0 52px;border:0;border-radius:999px;background:#262B31;font:500 16px/1 'IBM Plex Sans',sans-serif;color:#F4F5F6;white-space:nowrap;cursor:pointer;opacity:{{ backOp }};pointer-events:{{ backPe }};"><span data-qbc="" aria-hidden="true" style="position:absolute;top:4px;left:4px;display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:999px;background:#F4F5F6;color:#E0001B;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17V7h10"></path><path d="M17 17 7 7"></path></svg></span>Назад</button>
+</div>
+
+<div style="display:grid;">
+
+<div data-qs="" data-on="{{ on1 }}" style="grid-area:1 / 1;display:flex;flex-direction:column;gap:{{ qGap }};">
+<h3 ref="{{ h1 }}" tabIndex="-1" style="margin:0;outline:none;font:600 {{ h3 }};color:#F4F5F6;">Яке у вас авто?</h3>
+<div role="radiogroup" aria-label="Яке у вас авто?" onKeyDown="{{ roving }}" style="display:grid;grid-template-columns:repeat({{ cols }},minmax(0,1fr));gap:{{ tileGap }};">
+<sc-for list="{{ opts1 }}" as="o" hint-placeholder-count="6">
+<sc-if value="{{ dsk }}" hint-placeholder-val="{{ true }}"><button type="button" role="radio" data-qt="" data-sel="{{ o.selA }}" aria-checked="{{ o.checked }}" tabIndex="{{ o.tab }}" onClick="{{ o.pick }}" style="display:flex;align-items:center;gap:16px;height:96px;box-sizing:border-box;padding:0 24px 0 20px;border:0;border-radius:12px;background:#262B31;color:#F4F5F6;text-align:left;cursor:pointer;font:500 18px/1.3 'IBM Plex Sans',sans-serif;"><span data-qic="" aria-hidden="true" style="flex-shrink:0;display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:rgba(244,245,246,.06);box-shadow:inset 0 0 0 1px rgba(244,245,246,.10);"><span style="width:24px;height:24px;background:currentColor;-webkit-mask:{{ o.mask }};mask:{{ o.mask }};"></span></span><span style="flex:1;min-width:0;">{{ o.label }}</span><span data-qr="" aria-hidden="true" style="flex-shrink:0;display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;box-shadow:inset 0 0 0 1.5px #5A616A;color:#F4F5F6;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5 10 17.5 19 7"></path></svg></span></button></sc-if>
+<sc-if value="{{ mob }}" hint-placeholder-val="{{ false }}"><button type="button" role="radio" data-qt="" data-sel="{{ o.selA }}" aria-checked="{{ o.checked }}" tabIndex="{{ o.tab }}" onClick="{{ o.pick }}" style="display:flex;flex-direction:column;justify-content:space-between;align-items:stretch;gap:12px;height:136px;box-sizing:border-box;padding:16px;border:0;border-radius:12px;background:#262B31;color:#F4F5F6;text-align:left;cursor:pointer;font:500 16px/1.3 'IBM Plex Sans',sans-serif;"><span style="display:flex;align-items:flex-start;justify-content:space-between;"><span data-qic="" aria-hidden="true" style="flex-shrink:0;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;background:rgba(244,245,246,.06);box-shadow:inset 0 0 0 1px rgba(244,245,246,.10);"><span style="width:20px;height:20px;background:currentColor;-webkit-mask:{{ o.mask }};mask:{{ o.mask }};"></span></span><span data-qr="" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;box-shadow:inset 0 0 0 1.5px #5A616A;color:#F4F5F6;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5 10 17.5 19 7"></path></svg></span></span><span>{{ o.label }}</span></button></sc-if>
+</sc-for>
+</div>
+</div>
+
+<div data-qs="" data-on="{{ on2 }}" style="grid-area:1 / 1;display:flex;flex-direction:column;gap:{{ qGap }};">
+<h3 ref="{{ h2r }}" tabIndex="-1" style="margin:0;outline:none;font:600 {{ h3 }};color:#F4F5F6;">Що турбує?</h3>
+<div role="radiogroup" aria-label="Що турбує?" onKeyDown="{{ roving }}" style="display:grid;grid-template-columns:repeat({{ cols }},minmax(0,1fr));gap:{{ tileGap }};">
+<sc-for list="{{ opts2 }}" as="o" hint-placeholder-count="9">
+<sc-if value="{{ dsk }}" hint-placeholder-val="{{ true }}"><button type="button" role="radio" data-qt="" data-sel="{{ o.selA }}" aria-checked="{{ o.checked }}" tabIndex="{{ o.tab }}" onClick="{{ o.pick }}" style="display:flex;align-items:center;gap:16px;height:96px;box-sizing:border-box;padding:0 24px;border:0;border-radius:12px;background:#262B31;color:#F4F5F6;text-align:left;cursor:pointer;font:500 18px/1.3 'IBM Plex Sans',sans-serif;"><span style="flex:1;min-width:0;text-wrap:balance;">{{ o.label }}</span><span data-qr="" aria-hidden="true" style="flex-shrink:0;display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;box-shadow:inset 0 0 0 1.5px #5A616A;color:#F4F5F6;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5 10 17.5 19 7"></path></svg></span></button></sc-if>
+<sc-if value="{{ mob }}" hint-placeholder-val="{{ false }}"><button type="button" role="radio" data-qt="" data-sel="{{ o.selA }}" aria-checked="{{ o.checked }}" tabIndex="{{ o.tab }}" onClick="{{ o.pick }}" style="display:flex;flex-direction:column;justify-content:space-between;align-items:stretch;gap:12px;height:136px;box-sizing:border-box;padding:16px;border:0;border-radius:12px;background:#262B31;color:#F4F5F6;text-align:left;cursor:pointer;font:500 16px/1.3 'IBM Plex Sans',sans-serif;"><span style="display:flex;justify-content:flex-end;"><span data-qr="" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;box-shadow:inset 0 0 0 1.5px #5A616A;color:#F4F5F6;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5 10 17.5 19 7"></path></svg></span></span><span>{{ o.label }}</span></button></sc-if>
+</sc-for>
+</div>
+</div>
+
+<div data-qs="" data-on="{{ on3 }}" style="grid-area:1 / 1;display:grid;grid-template-columns:{{ s3cols }};gap:{{ s3gap }};align-items:stretch;">
+<div style="display:flex;flex-direction:column;justify-content:center;gap:{{ qGap }};min-width:0;padding:{{ s3Pad }};border-radius:12px;background:{{ s3Bg }};box-shadow:{{ s3Ring }};">
+<div style="display:flex;flex-direction:column;align-items:flex-start;gap:16px;"><span style="display:flex;align-items:center;gap:8px;height:32px;padding:0 14px 0 6px;border-radius:999px;background:rgba(47,158,91,.14);color:#4CC27E;font:500 14px/1 'IBM Plex Sans',sans-serif;"><span aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:999px;background:#2F9E5B;color:#F4F5F6;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Майже готово!</span><h3 ref="{{ h3r }}" tabIndex="-1" style="margin:0;outline:none;font:600 {{ h3 }};color:#F4F5F6;">Куди передзвонити?</h3></div>
+<sc-if value="{{ mob }}" hint-placeholder-val="{{ false }}"><div aria-label="Ваші відповіді" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px;border-radius:12px;background:#0F1114;"><sc-for list="{{ echo }}" as="c" hint-placeholder-count="2"><span style="display:flex;align-items:center;height:32px;padding:0 12px;border-radius:999px;background:#262B31;font:500 14px/1 'IBM Plex Sans',sans-serif;color:#F4F5F6;white-space:nowrap;">{{ c }}</span></sc-for><span style="padding:0 4px;font:500 14px/1.45 'IBM Plex Sans',sans-serif;color:#A9AFB6;">Схоже на <span style="color:#F4F5F6;">{{ preCat }}</span></span></div></sc-if>
+<form onSubmit="{{ submit }}" noValidate="" style="display:flex;flex-direction:column;gap:24px;max-width:{{ formW }};">
+<div style="display:grid;grid-template-columns:{{ fieldCols }};gap:16px;align-items:start;">
+<div style="display:flex;flex-direction:column;gap:8px;min-width:0;">
+<label for="{{ nameId }}" style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;font:500 14px/1.45 'IBM Plex Sans',sans-serif;color:#A9AFB6;">Ім'я</label>
+<input id="{{ nameId }}" data-qf="" type="text" autoComplete="given-name" placeholder="Як до вас звертатися" value="{{ name }}" onChange="{{ onName }}" style="height:56px;box-sizing:border-box;width:100%;padding:0 20px;border:0;border-radius:12px;font:400 18px/1.55 'IBM Plex Sans',sans-serif;color:#F4F5F6;">
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;min-width:0;">
+<label for="{{ phoneId }}" style="font:500 14px/1.45 'IBM Plex Sans',sans-serif;color:#A9AFB6;">Телефон</label>
+<input id="{{ phoneId }}" data-qf="" type="tel" inputMode="tel" autoComplete="tel" placeholder="+380 (__) ___ __ __" value="{{ phone }}" onChange="{{ onPhone }}" onFocus="{{ onPhoneFocus }}" aria-invalid="{{ phoneInvalid }}" aria-describedby="{{ phoneErrId }}" style="height:56px;box-sizing:border-box;padding:0 20px;border:0;border-radius:12px;font:400 18px/1.55 'IBM Plex Sans',sans-serif;color:#F4F5F6;font-variant-numeric:tabular-nums;width:100%;">
+<sc-if value="{{ phoneErr }}" hint-placeholder-val="{{ false }}"><div id="{{ phoneErrId }}" style="display:flex;align-items:center;gap:8px;font:400 14px/1.45 'IBM Plex Sans',sans-serif;color:#F2707A;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>Вкажіть номер повністю</div></sc-if>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:stretch;gap:12px;">
+<button type="submit" data-qbtn="" disabled="{{ loading }}" style="position:relative;display:flex;align-items:center;justify-content:center;height:56px;box-sizing:border-box;padding:0 68px 0 32px;border:0;border-radius:999px;background:#E0001B;color:#F4F5F6;font:500 18px/1 'IBM Plex Sans',sans-serif;white-space:nowrap;cursor:pointer;">{{ btnLabel }}<span data-qsq="" aria-hidden="true" style="position:absolute;top:4px;left:calc(100% - 52px);display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:#F4F5F6;color:#E0001B;"><sc-if value="{{ notLoading }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></sc-if><sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}"><svg data-qspin="" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.2-8.56"></path></svg></sc-if></span></button>
+<p style="margin:0;font:400 14px/1.45 'IBM Plex Sans',sans-serif;color:#A9AFB6;">Передзвонимо за 5–10 хвилин у робочий час</p>
+</div>
+</form>
+</div>
+<sc-if value="{{ dsk }}" hint-placeholder-val="{{ true }}"><aside aria-label="Що далі" style="display:flex;flex-direction:column;gap:32px;padding:32px;border-radius:12px;background:#0F1114;box-shadow:inset 0 0 0 1px #262B31;">
+<div style="display:flex;flex-wrap:wrap;gap:8px;"><sc-for list="{{ echo }}" as="c" hint-placeholder-count="2"><span style="display:flex;align-items:center;height:32px;padding:0 12px;border-radius:999px;background:#262B31;font:500 14px/1 'IBM Plex Sans',sans-serif;color:#F4F5F6;white-space:nowrap;">{{ c }}</span></sc-for></div>
+<div style="display:flex;flex-direction:column;gap:8px;">
+<div style="font:600 24px/1.25 'Fira Sans Condensed',sans-serif;color:#F4F5F6;text-wrap:balance;"><span style="color:#8F8F92;">Попередньо схоже на</span> {{ preCat }}</div>
+<p style="margin:4px 0 0;font:400 16px/1.5 'IBM Plex Sans',sans-serif;color:#A9AFB6;text-wrap:pretty;">Точний діагноз&nbsp;— після огляду. Менеджер уточнить деталі по телефону.</p>
+</div>
+<ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:16px;">
+<sc-for list="{{ nextSteps }}" as="s" hint-placeholder-count="3"><li style="display:flex;align-items:center;gap:16px;font:400 16px/1.5 'IBM Plex Sans',sans-serif;color:#F4F5F6;"><span aria-hidden="true" style="flex-shrink:0;display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:999px;background:#262B31;color:#F4F5F6;"><span style="width:16px;height:16px;background:currentColor;-webkit-mask:{{ s.ic }};mask:{{ s.ic }};"></span></span>{{ s.t }}</li></sc-for>
+</ol>
+</aside></sc-if>
+</div>
+
+<div data-qs="" data-on="{{ on4 }}" role="status" style="grid-area:1 / 1;display:flex;flex-direction:column;justify-content:center;gap:24px;">
+<h3 ref="{{ h4r }}" tabIndex="-1" style="margin:0;outline:none;font:600 {{ h3r }};letter-spacing:{{ h3rls }};color:#F4F5F6;text-wrap:balance;"><span style="color:#8F8F92;">Схоже на</span> {{ resCat }}</h3>
+<p style="margin:0;max-width:680px;font:400 18px/1.55 'IBM Plex Sans',sans-serif;color:#A9AFB6;">Менеджер передзвонить, уточнить деталі та запропонує час</p>
+<div style="display:flex;flex-wrap:wrap;gap:16px 32px;margin-top:8px;">
+<a href="{{ resHref }}" data-ql="" style="font:500 18px/1.55 'IBM Plex Sans',sans-serif;color:#F4F5F6;">Детальніше про послугу</a>
+<a href="tel:+380936401357" data-ql="" style="font:500 18px/1.55 'IBM Plex Sans',sans-serif;color:#F4F5F6;">Зателефонувати зараз</a>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mob&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;initStep&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;],&quot;default&quot;:&quot;1&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;freeze&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;a1&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;number&quot;},&quot;a2&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;number&quot;},&quot;filled&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const ICONS = {
+  pickup: '<path d="M5 17H3.5A1.5 1.5 0 0 1 2 15.5V13h8.5V9.5A1.5 1.5 0 0 1 12 8h3.6a1.5 1.5 0 0 1 1.2.6l2.2 2.9 1.8.5a1.5 1.5 0 0 1 1.2 1.5v2a1.5 1.5 0 0 1-1.5 1.5H19"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17h6"/>',
+  suv: '<path d="M5 17H3.5A1.5 1.5 0 0 1 2 15.5v-6A2.5 2.5 0 0 1 4.5 7h10.4a1.5 1.5 0 0 1 1.1.5l3 3.5 1.8.5a1.5 1.5 0 0 1 1.2 1.5v2.5a1.5 1.5 0 0 1-1.5 1.5H19"/><path d="M2 11h17"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17h6"/>',
+  van: '<path d="M5 17H3.5A1.5 1.5 0 0 1 2 15.5v-8A2.5 2.5 0 0 1 4.5 5h11.3a2 2 0 0 1 1.6.8l3.8 5.2c.5.6.8 1.3.8 2.1v2.4a1.5 1.5 0 0 1-1.5 1.5H19"/><path d="M2 10.5h18"/><path d="M12 5v5.5"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17h6"/>',
+  truck: '<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>',
+  tractor: '<path d="M3 4h9l1 7"/><path d="M4 11V4"/><path d="M8 10V4"/><path d="M18 5c-.6 0-1 .4-1 1v5.6"/><path d="m10 11 11 .9c.6 0 .9.5.8 1.1l-.8 5h-1"/><circle cx="7" cy="15" r=".5"/><circle cx="7" cy="15" r="5"/><circle cx="16" cy="18" r="2"/>',
+  car: '<path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17h6"/>'
+};
+const mask = (k) => 'url("data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' + ICONS[k] + '</svg>') + '") center / contain no-repeat';
+const Q1 = [['pickup', 'Пікап'], ['suv', 'Позашляховик'], ['van', 'Бус'], ['truck', 'Вантажне'], ['tractor', 'Спецтехніка'], ['car', 'Легкове']];
+const Q2 = [
+  ['Стук або вібрація', 'ходову', '/poslugy/hodova'],
+  ['Важко заводиться, дим', 'паливну систему', '/poslugy/palyvna-systema'],
+  ['Тріщини, корозія рами', 'раму та зварювання', '/poslugy/rama'],
+  ['Втрата тяги, жор масла', 'двигун', '/poslugy/dvyhun'],
+  ['Скрипить або тягне вбік при гальмуванні', 'гальма', '/poslugy/halma'],
+  ['Хрускіт у коробці, буксує зчеплення', 'трансмісію', '/poslugy/transmisiia'],
+  ['Не крутить стартер, сідає акумулятор', 'електрику', '/poslugy/elektryka'],
+  ['Планове ТО', 'технічне обслуговування', '/poslugy/to'],
+  ['Не знаю — потрібна діагностика', 'діагностику', '/poslugy/diahnostyka']
+];
+const fmt = (d) => { if (!d) return ''; let s = '+380 (' + d.slice(0, 2); if (d.length >= 2) s += ')'; if (d.length > 2) s += ' ' + d.slice(2, 5); if (d.length > 5) s += ' ' + d.slice(5, 7); if (d.length > 7) s += ' ' + d.slice(7, 9); return s; };
+const STEP_IC = [
+  '<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/>',
+  '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/>',
+  '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>'
+];
+const stepIc = (i) => 'url("data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + STEP_IC[i] + '</svg>') + '") center / contain no-repeat';
+let uid = 0;
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    const s = Number(this.props.initStep) || 1;
+    this.state = { step: s, a1: this.props.a1 ?? (s > 1 ? 0 : null), a2: this.props.a2 ?? (s > 2 ? 0 : null), digits: s >= 3 && this.props.filled ? '671234567' : '', consent: s >= 3 && !!this.props.filled, tried: false, loading: false, dir: 1 };
+    this.id = 'qz' + (++uid);
+  }
+  h1 = React.createRef(); h2r = React.createRef(); h3r = React.createRef(); h4r = React.createRef();
+  componentDidUpdate(_, ps) {
+    if (ps.step !== this.state.step && this.nav) {
+      const r = [null, this.h1, this.h2r, this.h3r, this.h4r][this.state.step];
+      setTimeout(() => r && r.current && r.current.focus({ preventScroll: true }), 140);
+      this.nav = false;
+    }
+  }
+  componentWillUnmount() { clearTimeout(this.cfT); clearTimeout(this.advT); clearTimeout(this.sendT); cancelAnimationFrame(this.cfR); this.cfC && this.cfC.remove(); }
+  confetti() {
+    const h = this.h3r.current || document.querySelector('[data-qz]'); if (!h) return;
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    cancelAnimationFrame(this.cfR); this.cfC && this.cfC.remove();
+    const dpr = Math.min(2, window.devicePixelRatio || 1), W = window.innerWidth, H = window.innerHeight;
+    const c = document.createElement('canvas'); c.setAttribute('aria-hidden', 'true');
+    c.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:60';
+    c.width = W * dpr; c.height = H * dpr; document.body.appendChild(c); this.cfC = c;
+    const x = c.getContext('2d'); x.scale(dpr, dpr);
+    const box = (h.closest('[data-qz]') || h).getBoundingClientRect(), by = Math.min(H, box.bottom) - 8;
+    const cols = ['#F4F5F6', '#E0001B', '#FF3B4A', '#A9AFB6', '#4CC27E', '#E0A400'];
+    const P = Array.from({ length: calm ? 40 : 140 }, (_, i) => { const L = i % 2 === 0, a = -Math.PI / 2 + (L ? .55 : -.55) + (Math.random() - .5) * .7, v = 13 + Math.random() * 10; return { x: L ? box.left + 24 : box.right - 24, y: by, vx: Math.cos(a) * v, vy: Math.sin(a) * v, w: 4 + Math.random() * 5, h: 7 + Math.random() * 7, rot: Math.random() * 6.28, vr: (Math.random() - .5) * .35, c: cols[(Math.random() * cols.length) | 0], round: Math.random() < .35 }; });
+    const t0 = performance.now(), D = 2600;
+    const f = (now) => {
+      const k = (now - t0) / D; x.clearRect(0, 0, W, H);
+      if (k >= 1) { c.remove(); this.cfC = null; return; }
+      x.globalAlpha = k < .7 ? 1 : 1 - (k - .7) / .3;
+      P.forEach(p => { p.vx *= .985; p.vy = p.vy * .985 + .32; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+        x.save(); x.translate(p.x, p.y); x.rotate(p.rot); x.fillStyle = p.c;
+        if (p.round) { x.beginPath(); x.arc(0, 0, p.w / 2, 0, 6.283); x.fill(); } else { x.scale(1, Math.cos(p.rot * 2)); x.beginPath(); x.roundRect ? x.roundRect(-p.w / 2, -p.h / 2, p.w, p.h, 1.5) : x.rect(-p.w / 2, -p.h / 2, p.w, p.h); x.fill(); }
+        x.restore(); });
+      this.cfR = requestAnimationFrame(f);
+    };
+    this.cfR = requestAnimationFrame(f);
+  }
+  go(step, dir) { this.nav = true; this.setState({ step, dir }); }
+  pick(q, i) {
+    if (this.props.freeze) { this.setState({ [q]: i }); return; }
+    this.setState({ [q]: i });
+    clearTimeout(this.advT);
+    this.advT = setTimeout(() => { this.go(q === 'a1' ? 2 : 3, 1); if (q === 'a2') this.cfT = setTimeout(() => this.confetti(), 180); }, 320);
+  }
+  roving = (e) => {
+    const k = e.key, cols = this.props.mob ? 2 : 3;
+    const d = { ArrowRight: 1, ArrowDown: cols, ArrowLeft: -1, ArrowUp: -cols }[k];
+    if (!d) return;
+    const bs = [...e.currentTarget.querySelectorAll('[role="radio"]')], i = bs.indexOf(document.activeElement);
+    if (i < 0) return;
+    e.preventDefault();
+    const n = Math.max(0, Math.min(bs.length - 1, i + d));
+    bs[n].focus();
+  };
+  submit = (e) => {
+    e.preventDefault();
+    if (this.state.loading) return;
+    const ok = this.state.digits.length === 9;
+    this.setState({ tried: true });
+    if (!ok) return;
+    this.setState({ loading: true });
+    this.sendT = setTimeout(() => { this.setState({ loading: false }); this.go(4, 1); }, 900);
+  };
+  renderVals() {
+    const mob = !!this.props.mob, st = this.state, step = st.step;
+    const opts = (list, q, withIcon) => list.map((o, i) => {
+      const sel = st[q] === i, any = st[q] !== null;
+      return { label: withIcon ? o[1] : o[0], mask: withIcon ? mask(o[0]) : '', selA: sel ? '' : undefined, checked: sel ? 'true' : 'false', tab: (any ? sel : i === 0) ? 0 : -1, pick: () => this.pick(q, i) };
+    });
+    const prog = ['Авто', 'Симптом', 'Контакт'].map((label, i) => {
+      const n = i + 1, done = step > n, cur = step === n;
+      const reach = n === 1 || (n === 2 && st.a1 !== null) || (n === 3 && st.a1 !== null && st.a2 !== null), dis = step === 4 || !reach;
+      return { dis: dis ? true : undefined, disA: dis ? '' : undefined, go: () => { if (!dis && !cur) { clearTimeout(this.advT); this.go(n, n > step ? 1 : -1); if (n === 3 && step < 3) this.cfT = setTimeout(() => this.confetti(), 180); } }, k: String(n), label, curA: cur ? '' : undefined, doneA: done ? '' : undefined, cur: cur ? 'step' : undefined, sr: done ? ' — готово' : '' };
+    });
+    const canBack = step === 2 || step === 3;
+    const r = Q2[st.a2 ?? 8];
+    const phoneErr = st.tried && st.digits.length !== 9, consentErr = st.tried && !st.consent;
+    return {
+      mob, dsk: !mob, hid: this.id + '-h',
+      pad: mob ? '64px 16px' : '96px 24px', headGap: mob ? '32px' : '48px',
+      h2: mob ? "32px/1.15 'Fira Sans Condensed',sans-serif" : "48px/1.15 'Fira Sans Condensed',sans-serif", h2ls: mob ? '-0.01em' : '-0.02em',
+      h3: mob ? "24px/1.2 'Fira Sans Condensed',sans-serif" : "32px/1.2 'Fira Sans Condensed',sans-serif",
+      h3r: mob ? "32px/1.15 'Fira Sans Condensed',sans-serif" : "48px/1.15 'Fira Sans Condensed',sans-serif", h3rls: mob ? '-0.01em' : '-0.02em',
+      panelPad: mob ? '24px' : '48px', panelR: mob ? '24px' : '32px', innerGap: mob ? '32px' : '48px', qGap: mob ? '24px' : '32px',
+      progPr: mob ? '12px' : '16px',
+      cols: mob ? 2 : 3, tileGap: mob ? '8px' : '16px', formW: 'none', btnAlign: mob ? 'stretch' : 'flex-start',
+      backA: st.dir < 0 ? '' : undefined,
+      prog, back: () => canBack && this.go(step - 1, -1), backHidden: canBack ? undefined : 'true', backTab: canBack ? 0 : -1, backOp: canBack ? 1 : 0, backPe: canBack ? 'auto' : 'none',
+      on1: step === 1 ? '' : undefined, on2: step === 2 ? '' : undefined, on3: step === 3 ? '' : undefined, on4: step === 4 ? '' : undefined,
+      h1: this.h1, h2r: this.h2r, h3r: this.h3r, h4r: this.h4r,
+      opts1: opts(Q1, 'a1', true), opts2: opts(Q2, 'a2', false), roving: this.roving,
+      phoneId: this.id + '-tel', phoneErrId: phoneErr ? this.id + '-tel-e' : undefined,
+      phone: fmt(st.digits), phoneInvalid: phoneErr ? 'true' : 'false', phoneErr, consentErr,
+      onPhoneFocus: () => {},
+      onPhone: (e) => { let d = e.target.value.replace(/\D/g, ''); if (d.startsWith('380')) d = d.slice(3); else if (d.startsWith('80')) d = d.slice(2); else if (d.startsWith('0')) d = d.slice(1); this.setState({ digits: d.slice(0, 9) }); },
+      consent: st.consent, onConsent: (e) => this.setState({ consent: e.target.checked }), cbRing: consentErr ? '#F2707A' : '#5A616A',
+      submit: this.submit, nameId: this.id + '-name', name: st.name || '', onName: (e) => this.setState({ name: e.target.value }), fieldCols: mob ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))', loading: st.loading, notLoading: !st.loading, btnLabel: st.loading ? 'Відправляємо...' : 'Отримати підказку',
+      resCat: r[1], resHref: r[2], preCat: r[1],
+      echo: [Q1[st.a1 ?? 0][1], r[0]], s3gap: mob ? '16px' : '16px', s3Pad: mob ? '0' : '32px', s3Bg: mob ? 'transparent' : '#0F1114', s3Ring: mob ? 'none' : 'inset 0 0 0 1px #262B31',
+      s3cols: mob ? 'minmax(0,1fr)' : 'minmax(0,1fr) minmax(0,1fr)',
+      nextSteps: ['Дзвінок менеджера за 5–10 хвилин у робочий час', 'Уточнимо проблему та запропонуємо час', 'Діагностика, яка зараховується у вартість ремонту'].map((t, i) => ({ t, ic: stepIc(i) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

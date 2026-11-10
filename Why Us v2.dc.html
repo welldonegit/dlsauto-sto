@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Fira+Sans+Condensed:wght@600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+[data-wu]{--e:cubic-bezier(.22,1,.36,1)}
+[data-wu] [data-wum]{clip-path:inset(100% 0 0 0 round 24px);transition:clip-path 1300ms cubic-bezier(.77,0,.18,1)}
+[data-wu] [data-wum] img{transform:scale(1.2);transition:transform 1800ms var(--e)}
+[data-wu][data-in] [data-wum]{clip-path:inset(0 0 0 0 round 24px)}
+[data-wu][data-in] [data-wum] img{transform:none}
+[data-wu] [data-wuplay]{opacity:0;scale:.5;transition:opacity 600ms var(--e) 900ms,scale 900ms var(--e) 900ms,transform 200ms var(--e)}
+[data-wu][data-in] [data-wuplay]{opacity:1;scale:1}
+[data-wu] [data-wur]{opacity:0;transform:translate3d(0,32px,0);filter:blur(8px);transition:opacity 900ms var(--e) calc(350ms + var(--i) * 120ms),transform 1100ms var(--e) calc(350ms + var(--i) * 120ms),filter 900ms var(--e) calc(350ms + var(--i) * 120ms)}
+[data-wu][data-in] [data-wur]{opacity:1;transform:none;filter:blur(0)}
+[data-wu] [data-wuc]{opacity:0;transform:translate3d(0,48px,0) scale(.96);transition:opacity 900ms var(--e) calc(800ms + var(--k) * 150ms),transform 1200ms var(--e) calc(800ms + var(--k) * 150ms)}
+[data-wu][data-in] [data-wuc]{opacity:1;transform:none}
+[data-wu] [data-wuq]{scale:.4;rotate:-30deg;opacity:0;transition:scale 900ms var(--e) calc(1050ms + var(--k) * 150ms),rotate 900ms var(--e) calc(1050ms + var(--k) * 150ms),opacity 500ms var(--e) calc(1050ms + var(--k) * 150ms)}
+[data-wu][data-in] [data-wuq]{scale:1;rotate:0deg;opacity:1}
+[data-wuplay]{transition:transform 200ms var(--e)}[data-wuplay]:hover{transform:scale(1.06)}[data-wuplay]:active{transform:scale(.97)}[data-wuplay]:focus-visible{outline:2px solid #E0001B;outline-offset:2px}
+[data-wutrack]{transition:transform 700ms cubic-bezier(.65,0,.35,1);will-change:transform}
+[data-wuarr]{transition:background-color 200ms var(--e),color 200ms var(--e),transform 120ms var(--e)}[data-wuarr]:hover{background:#F4F5F6!important;color:#0F1114!important}[data-wuarr]:active{transform:scale(.94)}[data-wuarr]:focus-visible{outline:2px solid #E0001B;outline-offset:2px}
+[data-wusw]{scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}[data-wusw]::-webkit-scrollbar{display:none}
+@media (prefers-reduced-motion:reduce){[data-wu] [data-wum],[data-wu] [data-wum] img,[data-wu] [data-wur],[data-wu] [data-wuc],[data-wu] [data-wuq],[data-wu] [data-wuplay]{opacity:1;transform:none;filter:none;clip-path:none;scale:1;rotate:0deg;transition:none}[data-wuplay],[data-wutrack],[data-wuarr]{transition:none}}
+</style>
+</helmet>
+<section aria-labelledby="{{ hid }}" data-screen-label="04 Про нас" style="width:100%;box-sizing:border-box;background:#0F1114;padding:{{ pad }};">
+<div style="max-width:1392px;margin:0 auto;box-sizing:border-box;padding:{{ panelPad }};border-radius:{{ panelR }};background:#181B1F;">
+<div data-wu="" ref="{{ root }}" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:{{ cols }};gap:{{ colGap }};align-items:stretch;">
+
+<div data-wum="" style="position:relative;width:{{ mediaW }};height:{{ mediaH }};aspect-ratio:{{ mediaAR }};min-height:{{ mediaMin }};overflow:hidden;border-radius:24px;background:#0F1114;">
+<sc-if value="{{ notPlaying }}" hint-placeholder-val="{{ true }}">
+<img src="{{ img }}" alt="{{ alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:38% 50%;">
+<sc-if value="{{ isVideo }}" hint-placeholder-val="{{ true }}">
+<button type="button" data-wuplay="" onClick="{{ play }}" aria-label="Відтворити відео з цеху" style="position:absolute;left:50%;top:50%;margin:-36px 0 0 -36px;display:flex;align-items:center;justify-content:center;width:72px;height:72px;padding:0;border:0;border-radius:999px;background:#F4F5F6;color:#0F1114;cursor:pointer;"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" style="margin-left:3px;"><path d="M7 4.5v15l12.5-7.5z"></path></svg></button>
+</sc-if>
+</sc-if>
+<sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}">
+<video src="{{ videoSrc }}" poster="{{ img }}" controls="" autoPlay="" playsInline="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0F1114;"></video>
+</sc-if>
+</div>
+
+<div style="display:flex;flex-direction:column;justify-content:space-between;gap:{{ blockGap }};min-width:0;">
+<div style="display:flex;flex-direction:column;gap:{{ headGap }};">
+<h2 id="{{ hid }}" data-wur="" style="--i:0;margin:0;font:600 {{ h2 }};letter-spacing:{{ h2ls }};color:#F4F5F6;text-wrap:balance;">Нам довіряють те, за що <span style="color:#8F8F92;">інші не беруться</span></h2>
+<div style="display:flex;flex-direction:column;gap:16px;max-width:600px;font:400 {{ leadF }};color:#A9AFB6;text-wrap:pretty;"><p data-wur="" style="--i:1;margin:0;">Рами, мости, паливна апаратура&nbsp;— техніка, яка працює щодня, і кожен день простою коштує дорожче за ремонт. Ми беремо складні випадки. Спершу авто стає на стенд, потім ви чуєте ціну, і лише тоді майстер бере інструмент.</p><p data-wur="" style="--i:2;margin:0;">Запчастини&nbsp;— з власної розбірки: нові, аналоги або вживані. Ви обираєте за ціною. Ми не чекаємо постачальників.</p></div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:{{ revGap }};min-width:0;">
+<div data-wur="" style="--i:3;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font:400 {{ leadF }};color:#F4F5F6;text-wrap:pretty;">Але краще за нас про нас розкажуть клієнти</p>
+<sc-if value="{{ dsk }}" hint-placeholder-val="{{ true }}"><div style="flex-shrink:0;display:flex;align-items:center;gap:16px;">
+<span aria-live="polite" style="font:500 14px/1 'IBM Plex Sans',sans-serif;color:#A9AFB6;font-variant-numeric:tabular-nums;white-space:nowrap;"><span style="color:#F4F5F6;">{{ cur }}</span> / {{ total }}</span>
+<div style="display:flex;gap:8px;">
+<button type="button" data-wuarr="" onClick="{{ prev }}" aria-label="Попередні відгуки" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;border-radius:999px;background:#262B31;color:#F4F5F6;cursor:pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+<button type="button" data-wuarr="" onClick="{{ next }}" aria-label="Наступні відгуки" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;border-radius:999px;background:#262B31;color:#F4F5F6;cursor:pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
+</div>
+</div></sc-if>
+</div>
+
+<sc-if value="{{ dsk }}" hint-placeholder-val="{{ true }}">
+<div style="overflow:hidden;border-radius:24px;">
+<ul data-wutrack="" aria-label="Відгуки клієнтів" style="margin:0;padding:0;list-style:none;display:flex;gap:16px;transform:translate3d({{ trackX }},0,0);">
+<sc-for list="{{ all }}" as="r" hint-placeholder-count="2">
+<li data-wuc="" aria-hidden="{{ r.hid }}" style="--k:{{ r.k }};flex:0 0 calc((100% - 16px) / 2);box-sizing:border-box;display:flex;flex-direction:column;gap:24px;padding:24px;border-radius:24px;background:#0F1114;box-shadow:inset 0 0 0 1px #262B31;">
+<blockquote style="margin:0;display:flex;flex-direction:column;gap:12px;"><span data-wuq="" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:rgba(224,0,27,.16);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF3B4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg></span><p style="margin:0;font:400 16px/1.5 'IBM Plex Sans',sans-serif;color:#A9AFB6;text-wrap:pretty;">{{ r.q }}</p></blockquote>
+<div style="display:flex;flex-direction:column;gap:4px;"><span style="font:500 16px/1.5 'IBM Plex Sans',sans-serif;color:#F4F5F6;">{{ r.name }}</span><span style="display:flex;flex-wrap:wrap;column-gap:12px;font:400 14px/1.45 'IBM Plex Sans',sans-serif;"><span style="color:#A9AFB6;">{{ r.car }}</span><span style="color:#7D848D;">{{ r.city }}</span></span></div>
+</li>
+</sc-for>
+</ul>
+</div>
+</sc-if>
+
+<sc-if value="{{ mob }}" hint-placeholder-val="{{ false }}">
+<ul data-wusw="" aria-label="Відгуки клієнтів, гортайте вбік" style="margin:0 -16px;padding:0 16px;list-style:none;display:flex;gap:12px;overflow-x:auto;scroll-padding:0 16px;">
+<sc-for list="{{ all }}" as="r" hint-placeholder-count="2">
+<li data-wuc="" style="--k:{{ r.k }};flex:0 0 86%;scroll-snap-align:start;display:flex;flex-direction:column;gap:20px;padding:20px;box-sizing:border-box;border-radius:24px;background:#0F1114;box-shadow:inset 0 0 0 1px #262B31;">
+<blockquote style="margin:0;display:flex;flex-direction:column;gap:12px;"><span data-wuq="" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:rgba(224,0,27,.16);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF3B4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg></span><p style="margin:0;font:400 16px/1.5 'IBM Plex Sans',sans-serif;color:#A9AFB6;text-wrap:pretty;">{{ r.q }}</p></blockquote>
+<div style="display:flex;flex-direction:column;gap:4px;"><span style="font:500 16px/1.5 'IBM Plex Sans',sans-serif;color:#F4F5F6;">{{ r.name }}</span><span style="display:flex;flex-wrap:wrap;column-gap:12px;font:400 14px/1.45 'IBM Plex Sans',sans-serif;"><span style="color:#A9AFB6;">{{ r.car }}</span><span style="color:#7D848D;">{{ r.city }}</span></span></div>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mob&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;media&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;video&quot;,&quot;photo&quot;],&quot;default&quot;:&quot;video&quot;,&quot;tsType&quot;:&quot;'video'|'photo'&quot;},&quot;videoSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;poster&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string&quot;},&quot;photo&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string&quot;}}">
+const Q = 'Текст відгуку. Реальну цитату клієнта додамо після публікації відгуку.';
+const REVIEWS = [
+  ['Олександр К.', 'Toyota Hilux', 'Запоріжжя'], ['Ігор М.', 'Mitsubishi L200', 'Вільнянськ'], ['Андрій С.', 'Volkswagen Crafter', 'Дніпро'],
+  ['Дмитро П.', 'Nissan Navara', 'Запоріжжя'], ['Сергій Л.', 'Ford Ranger', 'Комишуваха'], ['Віталій Т.', 'Mercedes-Benz Sprinter', 'Запоріжжя']
+].map(([name, car, city]) => ({ name, car, city, q: Q }));
+class Component extends DCLogic {
+  state = { playing: false, p: 0, out: false, dir: 1 };
+  root = React.createRef();
+  componentDidMount() {
+    const el = this.root.current; if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.dataset.in = '1'; return; }
+    if (!('IntersectionObserver' in window)) { el.dataset.in = '1'; return; }
+    this.io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { el.dataset.in = '1'; this.io.disconnect(); } }), { threshold: 0.25, rootMargin: '0px 0px -10% 0px' });
+    this.io.observe(el);
+  }
+  componentWillUnmount() { this.io && this.io.disconnect(); clearTimeout(this.fb); clearTimeout(this.sw); }
+  shift(d) {
+    const pages = Math.ceil(REVIEWS.length / 2);
+    this.setState(s => ({ p: (s.p + d + pages) % pages }));
+  }
+  renderVals() {
+    const mob = !!this.props.mob, video = this.props.media !== 'photo', playing = this.state.playing && video, p = this.state.p;
+    return {
+      mob, dsk: !mob, hid: mob ? 'why-us2-hm' : 'why-us2-h', root: this.root,
+      pad: mob ? '32px 8px' : '24px', panelPad: mob ? '32px 16px' : '48px 56px', panelR: mob ? '24px' : '32px',
+      cols: mob ? 'minmax(0,1fr)' : 'minmax(0,5fr) minmax(0,7fr)', colGap: mob ? '32px' : '64px',
+      mediaW: '100%', mediaH: mob ? 'auto' : '100%', mediaAR: mob ? '4 / 5' : 'auto', mediaMin: mob ? '0' : '480px',
+      blockGap: mob ? '32px' : '40px', headGap: mob ? '16px' : '24px', revGap: mob ? '16px' : '20px',
+      h2: mob ? "32px/1.15 'Fira Sans Condensed',sans-serif" : "48px/1.15 'Fira Sans Condensed',sans-serif", h2ls: mob ? '-0.01em' : '-0.02em',
+      leadF: mob ? "16px/1.5 'IBM Plex Sans',sans-serif" : "18px/1.55 'IBM Plex Sans',sans-serif",
+      all: REVIEWS.map((r, i) => ({ ...r, k: String(mob ? Math.min(i, 2) : i % 2), hid: mob || (i >> 1) === p ? undefined : 'true' })), trackX: 'calc(' + (-p) + ' * (100% + 16px))',
+      cur: String(p * 2 + 1), total: String(REVIEWS.length),
+      prev: () => this.shift(-1), next: () => this.shift(1),
+      isVideo: video, playing, notPlaying: !playing,
+      img: video ? (this.props.poster || 'assets/cases/rama.jpg') : (this.props.photo || 'assets/cases/rama.jpg'),
+      alt: video ? 'Кадр з відео: рамний пікап на підйомнику в цеху DLS' : 'Цех DLS: рамний пікап на підйомнику',
+      videoSrc: this.props.videoSrc || '', play: () => this.setState({ playing: true })
+    };
+  }
+}
+</script>
+</body>
+</html>
