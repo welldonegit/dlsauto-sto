@@ -2,6 +2,7 @@
   "cleanUrls": false,
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/about", "destination": "/About Soft.dc.html" },
     { "source": "/contacts", "destination": "/Contacts Soft.dc.html" },
     { "source": "/prices", "destination": "/Prices Soft.dc.html" },
     { "source": "/blog", "destination": "/Blog Soft.dc.html" },

@@ -31,7 +31,7 @@
 </style>
 </helmet>
 <section aria-labelledby="{{ hid }}" data-screen-label="04 Про нас" style="width:100%;box-sizing:border-box;background:#0F1114;padding:{{ pad }};">
-<div style="max-width:1392px;margin:0 auto;box-sizing:border-box;padding:{{ panelPad }};border-radius:{{ panelR }};background:#181B1F;">
+<div style="max-width:1280px;margin:0 auto;box-sizing:border-box;padding:{{ panelPad }};border-radius:{{ panelR }};background:#181B1F;">
 <div data-wu="" ref="{{ root }}" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:{{ cols }};gap:{{ colGap }};align-items:stretch;">
 
 <div data-wum="" style="position:relative;width:{{ mediaW }};height:{{ mediaH }};aspect-ratio:{{ mediaAR }};min-height:{{ mediaMin }};overflow:hidden;border-radius:24px;background:#0F1114;">
@@ -46,10 +46,10 @@
 </sc-if>
 </div>
 
-<div style="display:flex;flex-direction:column;justify-content:space-between;gap:{{ blockGap }};min-width:0;">
+<div style="display:flex;flex-direction:column;justify-content:flex-start;gap:{{ blockGap }};min-width:0;">
 <div style="display:flex;flex-direction:column;gap:{{ headGap }};">
-<h2 id="{{ hid }}" data-wur="" style="--i:0;margin:0;font:600 {{ h2 }};letter-spacing:{{ h2ls }};color:#F4F5F6;text-wrap:balance;">Нам довіряють те, за що <span style="color:#8F8F92;">інші не беруться</span></h2>
-<div style="display:flex;flex-direction:column;gap:16px;max-width:600px;font:400 {{ leadF }};color:#A9AFB6;text-wrap:pretty;"><p data-wur="" style="--i:1;margin:0;">Рами, мости, паливна апаратура&nbsp;— техніка, яка працює щодня, і кожен день простою коштує дорожче за ремонт. Ми беремо складні випадки. Спершу авто стає на стенд, потім ви чуєте ціну, і лише тоді майстер бере інструмент.</p><p data-wur="" style="--i:2;margin:0;">Запчастини&nbsp;— з власної розбірки: нові, аналоги або вживані. Ви обираєте за ціною. Ми не чекаємо постачальників.</p></div>
+<sc-if value="{{ defTitle }}" hint-placeholder-val="{{ true }}"><h2 id="{{ hid }}" data-wur="" style="--i:0;margin:0;font:600 {{ h2 }};letter-spacing:{{ h2ls }};color:#F4F5F6;text-wrap:balance;">Нам довіряють те, за що <span style="color:#8F8F92;">інші не беруться</span></h2></sc-if><sc-if value="{{ aboutTitle }}" hint-placeholder-val="{{ false }}"><h2 id="{{ hid }}" data-wur="" style="--i:0;margin:0;font:600 {{ h2 }};letter-spacing:{{ h2ls }};color:#F4F5F6;text-wrap:balance;">СТО у Запоріжжі</h2></sc-if>
+<sc-if value="{{ defTitle }}" hint-placeholder-val="{{ true }}"><div style="display:flex;flex-direction:column;gap:16px;max-width:600px;font:400 {{ leadF }};color:#A9AFB6;text-wrap:pretty;"><p data-wur="" style="--i:1;margin:0;">Рами, мости, паливна апаратура&nbsp;— техніка, яка працює щодня, і кожен день простою коштує дорожче за ремонт. Ми беремо складні випадки. Спершу авто стає на стенд, потім ви чуєте ціну, і лише тоді майстер бере інструмент.</p><p data-wur="" style="--i:2;margin:0;">Запчастини&nbsp;— з власної розбірки: нові, аналоги або вживані. Ви обираєте за ціною. Ми не чекаємо постачальників.</p></div></sc-if><sc-if value="{{ aboutTitle }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:16px;font:400 {{ leadF }};color:#A9AFB6;text-wrap:pretty;"><p data-wur="" style="--i:1;margin:0;">Ремонтуємо рами, ходову, двигуни й паливну апаратуру пікапів, позашляховиків, бусів і легкових авто. Працюємо з автовласниками, автопарками, військовими та волонтерами.</p><p data-wur="" style="--i:2;margin:0;">Погоджуємо вартість до ремонту, підбираємо нові або вживані запчастини, зокрема з власної авторозбірки. Додаткові роботи&nbsp;— лише за вашою згодою. Перед видачею перевіряємо результат.</p></div></sc-if>
 </div>
 
 <div style="display:flex;flex-direction:column;gap:{{ revGap }};min-width:0;">
@@ -68,9 +68,8 @@
 <div style="overflow:hidden;border-radius:24px;">
 <ul data-wutrack="" aria-label="Відгуки клієнтів" style="margin:0;padding:0;list-style:none;display:flex;gap:16px;transform:translate3d({{ trackX }},0,0);">
 <sc-for list="{{ all }}" as="r" hint-placeholder-count="2">
-<li data-wuc="" aria-hidden="{{ r.hid }}" style="--k:{{ r.k }};flex:0 0 calc((100% - 16px) / 2);box-sizing:border-box;display:flex;flex-direction:column;gap:24px;padding:24px;border-radius:24px;background:#0F1114;box-shadow:inset 0 0 0 1px #262B31;">
-<blockquote style="margin:0;display:flex;flex-direction:column;gap:12px;"><span data-wuq="" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:rgba(224,0,27,.16);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF3B4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg></span><p style="margin:0;font:400 16px/1.5 'IBM Plex Sans',sans-serif;color:#A9AFB6;text-wrap:pretty;">{{ r.q }}</p></blockquote>
-<div style="display:flex;flex-direction:column;gap:4px;"><span style="font:500 16px/1.5 'IBM Plex Sans',sans-serif;color:#F4F5F6;">{{ r.name }}</span><span style="display:flex;flex-wrap:wrap;column-gap:12px;font:400 14px/1.45 'IBM Plex Sans',sans-serif;"><span style="color:#A9AFB6;">{{ r.car }}</span><span style="color:#7D848D;">{{ r.city }}</span></span></div>
+<li data-wuc="" aria-hidden="{{ r.hid }}" style="--k:{{ r.k }};flex:0 0 410px;box-sizing:border-box;display:flex;flex-direction:column;gap:24px;padding:24px;border-radius:24px;background:#0F1114;box-shadow:inset 0 0 0 1px #262B31;">
+<blockquote style="margin:0;flex:1;display:flex;flex-direction:column;gap:12px;"><span aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(224,0,27,.16);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3B4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg></span><p style="margin:0;font:400 18px/1.55 'IBM Plex Sans',sans-serif;color:#F4F5F6;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">{{ r.text }}</p></blockquote><div style="display:flex;align-items:center;gap:16px;"><div style="width:56px;height:56px;border-radius:12px;overflow:hidden;background:#262B31;flex-shrink:0;"><img src="{{ r.photo }}" alt="{{ r.name }}" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;"></img></div><div style="display:flex;flex-direction:column;gap:4px;min-width:0;"><span style="font:600 18px/1.3 'IBM Plex Sans',sans-serif;color:#F4F5F6;">{{ r.name }}</span><span style="font:400 14px/1.45 'IBM Plex Sans',sans-serif;color:#A9AFB6;">{{ r.car }}</span></div></div>
 </li>
 </sc-for>
 </ul>
@@ -80,9 +79,8 @@
 <sc-if value="{{ mob }}" hint-placeholder-val="{{ false }}">
 <ul data-wusw="" aria-label="Відгуки клієнтів, гортайте вбік" style="margin:0 -16px;padding:0 16px;list-style:none;display:flex;gap:12px;overflow-x:auto;scroll-padding:0 16px;">
 <sc-for list="{{ all }}" as="r" hint-placeholder-count="2">
-<li data-wuc="" style="--k:{{ r.k }};flex:0 0 86%;scroll-snap-align:start;display:flex;flex-direction:column;gap:20px;padding:20px;box-sizing:border-box;border-radius:24px;background:#0F1114;box-shadow:inset 0 0 0 1px #262B31;">
-<blockquote style="margin:0;display:flex;flex-direction:column;gap:12px;"><span data-wuq="" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:rgba(224,0,27,.16);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF3B4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg></span><p style="margin:0;font:400 16px/1.5 'IBM Plex Sans',sans-serif;color:#A9AFB6;text-wrap:pretty;">{{ r.q }}</p></blockquote>
-<div style="display:flex;flex-direction:column;gap:4px;"><span style="font:500 16px/1.5 'IBM Plex Sans',sans-serif;color:#F4F5F6;">{{ r.name }}</span><span style="display:flex;flex-wrap:wrap;column-gap:12px;font:400 14px/1.45 'IBM Plex Sans',sans-serif;"><span style="color:#A9AFB6;">{{ r.car }}</span><span style="color:#7D848D;">{{ r.city }}</span></span></div>
+<li data-wuc="" style="--k:{{ r.k }};flex:0 0 86%;scroll-snap-align:start;display:flex;flex-direction:column;gap:24px;padding:20px;box-sizing:border-box;border-radius:24px;background:#0F1114;box-shadow:inset 0 0 0 1px #262B31;">
+<blockquote style="margin:0;flex:1;display:flex;flex-direction:column;gap:12px;"><span aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(224,0,27,.16);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3B4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg></span><p style="margin:0;font:400 16px/1.5 'IBM Plex Sans',sans-serif;color:#F4F5F6;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">{{ r.text }}</p></blockquote><div style="display:flex;align-items:center;gap:16px;"><div style="width:56px;height:56px;border-radius:12px;overflow:hidden;background:#262B31;flex-shrink:0;"><img src="{{ r.photo }}" alt="{{ r.name }}" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;"></img></div><div style="display:flex;flex-direction:column;gap:4px;min-width:0;"><span style="font:600 16px/1.3 'IBM Plex Sans',sans-serif;color:#F4F5F6;">{{ r.name }}</span><span style="font:400 14px/1.45 'IBM Plex Sans',sans-serif;color:#A9AFB6;">{{ r.car }}</span></div></div>
 </li>
 </sc-for>
 </ul>
@@ -94,12 +92,8 @@
 </div>
 </section>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;mob&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;media&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;video&quot;,&quot;photo&quot;],&quot;default&quot;:&quot;video&quot;,&quot;tsType&quot;:&quot;'video'|'photo'&quot;},&quot;videoSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;poster&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string&quot;},&quot;photo&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string&quot;}}">
-const Q = 'Текст відгуку. Реальну цитату клієнта додамо після публікації відгуку.';
-const REVIEWS = [
-  ['Олександр К.', 'Toyota Hilux', 'Запоріжжя'], ['Ігор М.', 'Mitsubishi L200', 'Вільнянськ'], ['Андрій С.', 'Volkswagen Crafter', 'Дніпро'],
-  ['Дмитро П.', 'Nissan Navara', 'Запоріжжя'], ['Сергій Л.', 'Ford Ranger', 'Комишуваха'], ['Віталій Т.', 'Mercedes-Benz Sprinter', 'Запоріжжя']
-].map(([name, car, city]) => ({ name, car, city, q: Q }));
+<script type="text/x-dc" data-dc-script data-props="{&quot;about&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;mob&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;media&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;video&quot;,&quot;photo&quot;],&quot;default&quot;:&quot;video&quot;,&quot;tsType&quot;:&quot;'video'|'photo'&quot;},&quot;videoSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;poster&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string&quot;},&quot;photo&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string&quot;}}">
+const REVIEWS = [['Олександр К.','Toyota Hilux, 2018','toyota','Toyota','Три сервіси не могли знайти, що стукає в підвісці. Тут за годину показали причину на підйомнику й назвали ціну ще до початку робіт.'],['Ігор М.','Mitsubishi L200, 2016','mitsubishi','Mitsubishi','Перебрали КПП за чотири дні, як і обіцяли. Старі деталі віддали в коробці й пояснили, що саме зносилось.'],['Андрій С.','Volkswagen Crafter, 2019','volkswagen','Volkswagen','Бус — це мій заробіток, простій для мене критичний. Генератор замінили за день, без зайвих робіт у рахунку.'],['Дмитро П.','Nissan Navara, 2017','nissan','Nissan','Варили раму після бездоріжжя. Зроблено акуратно, з антикором, надіслали фото кожного етапу.'],['Сергій Л.','Ford Ranger, 2020','ford','Ford','Діагностика на стенді плюс поїздка з майстром. Нарешті зрозумів, що відбувається з машиною і що можна відкласти.'],['Василь Т.','Mercedes-Benz Sprinter, 2015','mercedes','Mercedes-Benz','Почистили й перевірили форсунки на стенді. Машина знову заводиться з пів оберту, витрата впала.'],['Роман Г.','Jeep Wrangler, 2014','jeep','Jeep','Після озера в салоні пахло гаром. Знайшли окислену проводку, перебрали джгут і показали фото до і після.'],['Олег Б.','Mazda BT-50, 2012','mazda','Mazda','Записався на ТО, а майстер помітив підтікання сальника. Погодили по телефону, зробили того ж дня.'],['Максим Ш.','Kia Sorento, 2017','kia','Kia','Гальма скрипіли пів року. Замінили диски й колодки, пояснили, чому старі зносились нерівно.']].slice(0, 6).map(([name, car, f, brand, text], k) => ({ name, car, photo: 'assets/reviews/r' + (k % 4 + 1) + '.png', text }));
 class Component extends DCLogic {
   state = { playing: false, p: 0, out: false, dir: 1 };
   root = React.createRef();
@@ -112,21 +106,22 @@ class Component extends DCLogic {
   }
   componentWillUnmount() { this.io && this.io.disconnect(); clearTimeout(this.fb); clearTimeout(this.sw); }
   shift(d) {
-    const pages = Math.ceil(REVIEWS.length / 2);
+    const pages = REVIEWS.length;
     this.setState(s => ({ p: (s.p + d + pages) % pages }));
   }
   renderVals() {
     const mob = !!this.props.mob, video = this.props.media !== 'photo', playing = this.state.playing && video, p = this.state.p;
     return {
+      defTitle: !this.props.about, aboutTitle: !!this.props.about,
       mob, dsk: !mob, hid: mob ? 'why-us2-hm' : 'why-us2-h', root: this.root,
-      pad: mob ? '32px 8px' : '24px', panelPad: mob ? '32px 16px' : '48px 56px', panelR: mob ? '24px' : '32px',
-      cols: mob ? 'minmax(0,1fr)' : 'minmax(0,5fr) minmax(0,7fr)', colGap: mob ? '32px' : '64px',
-      mediaW: '100%', mediaH: mob ? 'auto' : '100%', mediaAR: mob ? '4 / 5' : 'auto', mediaMin: mob ? '0' : '480px',
-      blockGap: mob ? '32px' : '40px', headGap: mob ? '16px' : '24px', revGap: mob ? '16px' : '20px',
+      pad: mob ? '32px 8px' : '24px', panelPad: mob ? '32px 16px' : '48px', panelR: mob ? '24px' : '32px',
+      cols: mob ? 'minmax(0,1fr)' : '440px minmax(0,1fr)', colGap: mob ? '32px' : '56px',
+      mediaW: '100%', mediaH: 'auto', mediaAR: mob ? '4 / 5' : '4 / 6', mediaMin: '0',
+      blockGap: mob ? '32px' : '24px', headGap: mob ? '16px' : '24px', revGap: mob ? '16px' : '20px',
       h2: mob ? "32px/1.15 'Fira Sans Condensed',sans-serif" : "48px/1.15 'Fira Sans Condensed',sans-serif", h2ls: mob ? '-0.01em' : '-0.02em',
       leadF: mob ? "16px/1.5 'IBM Plex Sans',sans-serif" : "18px/1.55 'IBM Plex Sans',sans-serif",
-      all: REVIEWS.map((r, i) => ({ ...r, k: String(mob ? Math.min(i, 2) : i % 2), hid: mob || (i >> 1) === p ? undefined : 'true' })), trackX: 'calc(' + (-p) + ' * (100% + 16px))',
-      cur: String(p * 2 + 1), total: String(REVIEWS.length),
+      all: REVIEWS.map((r, i) => ({ ...r, k: String(mob ? Math.min(i, 2) : Math.min(i, 1)), hid: mob || i === p || i === p + 1 ? undefined : 'true' })), trackX: (-p * 426) + 'px',
+      cur: String(p + 1), total: String(REVIEWS.length),
       prev: () => this.shift(-1), next: () => this.shift(1),
       isVideo: video, playing, notPlaying: !playing,
       img: video ? (this.props.poster || 'assets/cases/rama.jpg') : (this.props.photo || 'assets/cases/rama.jpg'),
